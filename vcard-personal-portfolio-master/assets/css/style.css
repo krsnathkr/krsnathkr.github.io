@@ -3,28 +3,14 @@
 \*-----------------------------------*/
 
 
-/**
- * copyright 2022 @codewithsadee
- */
-
-
-
-
-
 /*-----------------------------------*\
   #CUSTOM PROPERTY
 \*-----------------------------------*/
 
 /*fonts*/
-@font-face {
-  font-family: 'geist';
-  src: url("C:\Users\krish\Downloads\vcard-personal-portfolio-master\Geist-1.3.0\Geist-1.3.0\statics-woff\Geist-Bold.woff2") format('woff2'),
-       url("C:\Users\krish\Downloads\vcard-personal-portfolio-master\Geist-1.3.0\Geist-1.3.0\statics-woff\Geist-Bold.woff") format('woff');
-  /* Add more font formats if necessary */
-}
 
 body {
-  font-family: 'geist', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 
@@ -37,30 +23,31 @@ body {
 
   /* gradient */
 
-  --bg-gradient-onyx: linear-gradient(
-    to bottom right, 
-    hsl(0, 0%, 0%) 3%, 
-    hsl(0, 0%, 0%) 97%
-  );
+  /* --bg-gradient-onyx: radial-gradient(
+    circle at center,#fffdfd, #111010 
+  ); */
+
+/* --bg-gradient-onyx: radial-gradient(circle at center , #111010, #fffdfd 20%, rgba(255, 255, 255, 0) 70%); */
+
   --bg-gradient-jet: linear-gradient(
     to bottom right, 
-    hsla(0, 0%, 0%, 0.251) 0%, 
-    hsla(0, 0%, 0%, 0) 100%
-  ), hsl(0, 0%, 0%);
+    #111010, 
+    #111010
+  ), #111010;
   --bg-gradient-yellow-1: linear-gradient(
     to bottom right, 
-    hsl(45, 100%, 71%) 0%, 
+    hsl(0, 0%, 0%) 0%, 
     hsla(36, 100%, 69%, 0) 50%
   );
   --bg-gradient-yellow-2: linear-gradient(
     135deg, 
-    hsla(45, 100%, 71%, 0.251) 0%, 
-    hsla(35, 100%, 68%, 0) 59.86%
+    #111010, 
+    #111010
   ), hsl(240, 2%, 13%);
   --border-gradient-onyx: linear-gradient(
     to bottom right, 
-    hsl(0, 1%, 17%) 0%, 
-    hsla(0, 0%, 0%, 0) 50%
+    #111010 
+    #111010
   );
   --text-gradient-yellow: linear-gradient(
     to right, 
@@ -70,11 +57,11 @@ body {
 
   /* solid */
 
-  --jet: hsla(0, 1%, 19%, 0.555);
-  --onyx: hsl(240, 1%, 17%);
-  --eerie-black-1: hsl(0, 0%, 0%);
-  --eerie-black-2: hsl(0, 0%, 0%);
-  --smoky-black: hsl(0, 0%, 0%);
+  --jet: #111010;
+  --onyx: #111010;
+  --eerie-black-1: #111010;
+  --eerie-black-2: #111010;
+  --smoky-black: #111010;
   --white-1: hsl(0, 0%, 100%);
   --white-2: hsl(0, 0%, 98%);
   --orange-yellow-crayola: hsl(45, 100%, 72%);
@@ -82,6 +69,7 @@ body {
   --light-gray: hsl(0, 0%, 84%);
   --light-gray-70: hsla(0, 0%, 84%, 0.7);
   --bittersweet-shimmer: hsl(0, 100%, 50%);
+  --gdfs: #f7f7f7;
 
   /**
    * typography
@@ -110,11 +98,11 @@ body {
    * shadow
    */
   
-  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
-  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.25);
-  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.25);
-  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.15);
-  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.25);
+  --shadow-1: -4px 8px 24px #111010;
+  --shadow-2: 0 16px 30px #111010;
+  --shadow-3: 0 16px 40px #111010;
+  --shadow-4: 0 25px 50px #111010;
+  --shadow-5: 0 24px 80px #111010;
 
   /**
    * transition
@@ -311,9 +299,6 @@ main {
 }
 
 
-
-
-
 /*-----------------------------------*\
   #SIDEBAR
 \*-----------------------------------*/
@@ -337,7 +322,7 @@ main {
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .info-content .name {
@@ -463,7 +448,7 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: hsla(0, 0%, 0%, 0.75);
+  background: #111010;
   backdrop-filter: blur(10px);
   border: 1px solid var(--jet);
   border-radius: 12px 12px 0 0;
