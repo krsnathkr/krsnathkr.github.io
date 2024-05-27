@@ -160,33 +160,34 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 ////////////////////////////////////////////////////////
 
-(function () {
+const cursor = document.querySelector('.cursor');
 
-  const link = document.querySelectorAll('nav > .hover-this');
-  const cursor = document.querySelector('.cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
 
-  const animateit = function (e) {
-        const span = this.querySelector('span');
-        const { offsetX: x, offsetY: y } = e,
-        { offsetWidth: width, offsetHeight: height } = this,
+document.querySelectorAll('a').forEach(link => {
+  link.addEventListener('mouseover', () => {
+    cursor.style.width = '55px';
+    cursor.style.height = '55px';
+  });
 
-        move = 25,
-        xMove = x / width * (move * 2) - move,
-        yMove = y / height * (move * 2) - move;
+  link.addEventListener('mouseout', () => {
+    cursor.style.width = '35px';
+    cursor.style.height = '35px';
+  });
+});
 
-        span.style.transform = `translate(${xMove}px, ${yMove}px)`;
 
-        if (e.type === 'mouseleave') span.style.transform = '';
-  };
+document.querySelectorAll('.navbar-link').forEach(link => {
+  link.addEventListener('mouseover', () => {
+    cursor.style.width = '55px';
+    cursor.style.height = '55px';
+  });
 
-  const editCursor = e => {
-        const { clientX: x, clientY: y } = e;
-        cursor.style.left = x + 'px';
-        cursor.style.top = y + 'px';
-  };
-
-  link.forEach(b => b.addEventListener('mousemove', animateit));
-  link.forEach(b => b.addEventListener('mouseleave', animateit));
-  window.addEventListener('mousemove', editCursor);
-
-})();
+  link.addEventListener('mouseout', () => {
+    cursor.style.width = '35px';
+    cursor.style.height = '35px';
+  });
+});
