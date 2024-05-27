@@ -1,79 +1,65 @@
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
-
-
-/*-----------------------------------*\
-  #CUSTOM PROPERTY
-\*-----------------------------------*/
-
-/*fonts*/
-
-body {
-  font-family: 'Fira Sans', sans-serif;
-}
-
-
-
 :root {
 
   --bg-gradient-mainborder: linear-gradient(
     to bottom right, 
     #a3b18a, 
     #a3b18a
-  ), #a3b18a;
-  --bg-gradient-yellow-1: linear-gradient(
-    to bottom right, 
-    #021409, 
+    ), #a3b18a;
+    --bg-gradient-yellow-1: linear-gradient(
+      to bottom right, 
+      #021409, 
     #021409 50%
   );
   --bg-gradient-yellow-2: linear-gradient(
     135deg, 
     #021409, 
     #021409
-  ), #021409;
-  --border-gradient-onyx: linear-gradient(
-    to bottom right, 
-    #021409
-    #021409
-  );
-  --text-gradient-yellow: linear-gradient(
-    to right, 
-    #588157, 
-    #588157
-  );
+    ), #021409;
+    --border-gradient-onyx: linear-gradient(
+      to bottom right, 
+      #021409
+      #021409
+      );
+      --text-gradient-yellow: linear-gradient(
+        to right, 
+        #588157, 
+        #588157
+        );
+        
+        /* solid */
+        
+        --mainborder: #a3b18a;
+        --onyx: #588157;
+        --eerie-black-1: #fff0db;
+        --eerie-black-2: #a3b18a;
+        --smoky-black: #fff0db;
+        --white-1: #fff0db;
+        --white-2: #021409;
+        --orange-yellow-crayola: #021409  ;
+        --vegas-gold: #021409;
+        --light-gray: #021409;
+        --light-gray-70: #021409;
+        --bittersweet-shimmer: #021409;
+        --gdfs: #fff0db;
+        
+        /**
+        * typography
+        */
+        
+        /* font-family */
 
-  /* solid */
-
-  --mainborder: #a3b18a;
-  --onyx: #588157;
-  --eerie-black-1: #fff0db;
-  --eerie-black-2: #a3b18a;
-  --smoky-black: #fff0db;
-  --white-1: #fff0db;
-  --white-2: #021409;
-  --orange-yellow-crayola: #021409  ;
-  --vegas-gold: #021409;
-  --light-gray: #021409;
-  --light-gray-70: #021409;
-  --bittersweet-shimmer: #021409;
-  --gdfs: #fff0db;
-
-  /**
-   * typography
-   */
-
-  /* font-family */
-  --ff-poppins: 'Poppins', sans-serif;
-
-  /* font-size */
-  --fs-1: 24px;
-  --fs-2: 18px;
-  --fs-3: 17px;
-  --fs-4: 16px;
-  --fs-5: 15px;
-  --fs-6: 14px;
-  --fs-7: 13px;
+        body {
+          font-family: 'Fira Sans', sans-serif;
+        }
+        
+        /* font-size */
+        --fs-1: 24px;
+        --fs-2: 18px;
+        --fs-3: 17px;
+        --fs-4: 16px;
+        --fs-5: 15px;
+        --fs-6: 14px;
+        --fs-7: 13px;
   --fs-8: 11px;
 
   /* font-weight */
