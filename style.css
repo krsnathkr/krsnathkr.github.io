@@ -1554,21 +1554,21 @@ textarea.form-input::-webkit-resizer {
   justify-content: flex-start;
 }
 
-.skill-pill {
-  background-color: #588157;
-  color: #fff0db;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
+  .skill-pill {
+    display: inline-block;
+    /* fallback color */
+    background-color: #588157;
+    /* modern var */
+    background-color: var(--onyx);
+    color: #fff0db;
+    padding: 8px 16px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
 
-.skill-pill:hover {
-  background-color: #283b31;
-}
+  .skill-pill:hover {
+    background-color: #283b31;
+  }
 
 
 
@@ -1818,7 +1818,8 @@ textarea.form-input::-webkit-resizer {
     height: 150px;
     object-fit: cover;
     border-radius: 16px;
-    border: 2px solid #283b31,
+    border: 2px solid #283b31;
+    border: 2px solid var(--onyx);
   }
 
 
