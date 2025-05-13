@@ -1343,8 +1343,13 @@ textarea.form-input::-webkit-resizer {
   }
 
   .avatar-box img {
-    width: 120px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #283b31; /* Dark border color for visibility */
   }
+
 
   .info-content .name {
     margin-bottom: 15px;
@@ -1517,6 +1522,55 @@ textarea.form-input::-webkit-resizer {
   .skills-item:not(:last-child) {
     margin-bottom: 25px;
   }
+
+    .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    padding: 20px;
+    justify-items: center;
+  }
+
+  .skill-badge {
+    background-color: #344e41;
+    color: #fff0db;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .skill-badge:hover {
+    background-color: #283b31;
+  }
+
+  .skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  justify-content: flex-start;
+}
+
+.skill-pill {
+  background-color: #588157;
+  color: #fff0db;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.skill-pill:hover {
+  background-color: #283b31;
+}
+
+
 
   .project-img,
   .blog-banner-box {
@@ -1761,7 +1815,12 @@ textarea.form-input::-webkit-resizer {
 
   .avatar-box img {
     width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid #283b31,
   }
+
 
   .info-content .name {
     white-space: nowrap;
@@ -1846,7 +1905,7 @@ textarea.form-input::-webkit-resizer {
   margin-left: 20px;
   background-color: #344e41;
   color: #fff;
-  text-align: center;
+  text-align: center; 
   text-decoration: none;
   border-radius: 5px;
   transition: background-color 0.3s ease;

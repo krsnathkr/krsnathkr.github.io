@@ -17,8 +17,8 @@ const elementToggleFunc = (elem) => {
     modalContainer.classList.toggle("active")
     overlay.classList.toggle("active")
   }
-  for (let i = 0; i < testimonialsItem.length; i++) {
-    testimonialsItem[i].addEventListener("click", function () {
+  for (const item of testimonialsItem) {
+    item.addEventListener("click", function () {
       modalImg.src = this.querySelector("[data-testimonials-avatar]").src
       modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt
       modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML
@@ -35,8 +35,8 @@ const elementToggleFunc = (elem) => {
   select.addEventListener("click", function () {
     elementToggleFunc(this)
   })
-  for (let i = 0; i < selectItems.length; i++) {
-    selectItems[i].addEventListener("click", function () {
+  for (const item of selectItems) {
+    item.addEventListener("click", function () {
       const selectedValue = this.innerText.toLowerCase()
       selectValue.innerText = this.innerText
       elementToggleFunc(select)
@@ -45,19 +45,20 @@ const elementToggleFunc = (elem) => {
   }
   const filterItems = document.querySelectorAll("[data-filter-item]")
   const filterFunc = (selectedValue) => {
-    for (let i = 0; i < filterItems.length; i++) {
-      if (selectedValue === "all") {
-        filterItems[i].classList.add("active")
-      } else if (selectedValue === filterItems[i].dataset.category) {
-        filterItems[i].classList.add("active")
+    for (const item of filterItems) {
+      const cats = item.dataset.category
+                       .split(',')
+                       .map(c => c.trim().toLowerCase());
+      if (selectedValue === 'all' || cats.includes(selectedValue)) {
+        item.classList.add('active');
       } else {
-        filterItems[i].classList.remove("active")
+        item.classList.remove('active');
       }
     }
   }
   let lastClickedBtn = filterBtn[0]
-  for (let i = 0; i < filterBtn.length; i++) {
-    filterBtn[i].addEventListener("click", function () {
+  for (const btn of filterBtn) {
+    btn.addEventListener("click", function () {
       const selectedValue = this.innerText.toLowerCase()
       selectValue.innerText = this.innerText
       filterFunc(selectedValue)
@@ -69,8 +70,8 @@ const elementToggleFunc = (elem) => {
   const form = document.querySelector("[data-form]")
   const formInputs = document.querySelectorAll("[data-form-input]")
   const formBtn = document.querySelector("[data-form-btn]")
-  for (let i = 0; i < formInputs.length; i++) {
-    formInputs[i].addEventListener("input", () => {
+  for (const input of formInputs) {
+    input.addEventListener("input", () => {
       if (form.checkValidity()) {
         formBtn.removeAttribute("disabled")
       } else {
@@ -80,8 +81,8 @@ const elementToggleFunc = (elem) => {
   }
   const navigationLinks = document.querySelectorAll("[data-nav-link]")
   const pages = document.querySelectorAll("[data-page]")
-  for (let i = 0; i < navigationLinks.length; i++) {
-    navigationLinks[i].addEventListener("click", function () {
+  for (const link of navigationLinks) {
+    link.addEventListener("click", function () {
       for (let i = 0; i < pages.length; i++) {
         if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
           pages[i].classList.add("active")
@@ -119,4 +120,3 @@ const elementToggleFunc = (elem) => {
       cursor.style.height = "35px"
     })
   })
-  
