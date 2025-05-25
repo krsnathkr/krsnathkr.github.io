@@ -120,3 +120,14 @@ const elementToggleFunc = (elem) => {
       cursor.style.height = "35px"
     })
   })
+
+  const viewAllProjectsBtnResume = document.getElementById("view-all-projects-btn-resume");
+  if (viewAllProjectsBtnResume) {
+    viewAllProjectsBtnResume.addEventListener("click", () => {
+      // Find the 'Projects' navbar link and click it programmatically
+      const projectsNavLink = Array.from(navigationLinks).find(link => link.textContent.toLowerCase() === "projects");
+      if (projectsNavLink) {
+        projectsNavLink.click();
+      }
+    });
+  }

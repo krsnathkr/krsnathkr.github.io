@@ -1237,10 +1237,7 @@ textarea.form-input::-webkit-resizer {
 
 .form-btn {
   position: relative;
-  width: 100%;
-  background: var(--border-gradient-onyx);
-  color: var(--orange-yellow-crayola);
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -1248,6 +1245,11 @@ textarea.form-input::-webkit-resizer {
   border-radius: 14px;
   font-size: var(--fs-6);
   text-transform: capitalize;
+  background: var(--border-gradient-onyx);
+  color: var(--white-1);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
   z-index: 1;
   transition: var(--transition-1);
 }
@@ -1256,7 +1258,7 @@ textarea.form-input::-webkit-resizer {
   content: "";
   position: absolute;
   inset: 1px;
-  background: var(--bg-gradient-mainborder);
+  background: var(--onyx);
   border-radius: inherit;
   z-index: -1;
   transition: var(--transition-1);
@@ -1268,6 +1270,7 @@ textarea.form-input::-webkit-resizer {
 
 .form-btn:hover {
   background: var(--bg-gradient-yellow-1);
+  color: var(--white-1);
 }
 
 .form-btn:hover::before {
@@ -1280,11 +1283,12 @@ textarea.form-input::-webkit-resizer {
 }
 
 .form-btn:disabled:hover {
-  background: var(--border-gradient-onyx);
+  background: var(--bg-gradient-mainborder);
 }
 
-.form-btn:disabled:hover::before {
-  background: var(--bg-gradient-mainborder);
+/* ADDED: Specific width for contact form button */
+.contact-form .form-btn {
+  width: 100%;
 }
 
 /* ------------------------------ */
@@ -1911,23 +1915,8 @@ textarea.form-input::-webkit-resizer {
   }
 }
 
-/* ------------------------------ */
-/*     Download Resume Button     */
-/* ------------------------------ */
-
-.download-resume-btn {
-  display: inline-block;
-  padding: 10px 20px;
+/* ADDED: Specific margins for download buttons in sidebar */
+.sidebar .form-btn {
   margin-top: 20px;
   margin-left: 20px;
-  background-color: #344e41;
-  color: #fff;
-  text-align: center; 
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.download-resume-btn:hover {
-  background-color: #283b31;
 }
