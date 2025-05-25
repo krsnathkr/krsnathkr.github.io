@@ -46,6 +46,23 @@
   --ff-poppins: 'Fira Sans', sans-serif;
 }
 
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  /* body {
+    overflow: hidden; 
+  } */
+
+  .sidebar {
+    max-height: 100vh; /* Full viewport height */
+    overflow-y: auto;   /* Enable vertical scrolling */
+    overflow-x: hidden;  /* Prevent horizontal scrolling */
+  }
+
+  .sidebar.active {
+    max-height: 100vh; /* Ensure active state also uses full viewport height */
+  }
+}
+
 /* ------------------------------ */
 /*     Base & Global Elements     */
 /* ------------------------------ */
@@ -273,7 +290,6 @@ main {
 .sidebar {
   margin-bottom: 15px;
   max-height: 112px;
-  overflow: hidden;
   transition: var(--transition-2);
 }
 
