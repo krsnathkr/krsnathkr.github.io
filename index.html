@@ -33,6 +33,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <style>
+    .resume-download-section {
+      display: block; /* Ensure block behavior */
+      width: 100%;    /* Take full available width within sidebar */
+      padding-left: 0; /* Override any inherited horizontal padding */
+      padding-right: 0;/* Override any inherited horizontal padding */
+      margin-bottom: 10px;
+      box-sizing: border-box; /* Important if section has border/padding from elsewhere */
+    }
+    .resume-download-section .form-btn {
+      display: block;
+      width: 100%; /* Button takes full width of its section */
+      text-align: center;
+      box-sizing: border-box;
+      margin-left: 0;  /* Override any default horizontal margins */
+      margin-right: 0; /* Override any default horizontal margins */
+    }
+  </style>
 </head>
 
 <body>
@@ -143,14 +162,17 @@
 
       </div>
 
-      <section>
-        <a href=main\assets\resume\KrishnaMachineLearningEng.pdf download="KrishnaMachineLearningEng.pdf" class="form-btn">Download Machine Learning Resume</a>
+      <section class="resume-download-section">
+        <a href="main\\assets\\resume\\KrishnaMachineLearningEng.pdf" download="KrishnaMachineLearningEng.pdf" class="form-btn">Download Machine Learning Resume</a>
       </section>
 
-      <section>
-        <a href=main\assets\resume\KrishnaDataScientist.pdf download="KrishnaDataScientist.pdf" class="form-btn">Download Data Science Resume</a>
+      <section class="resume-download-section">
+        <a href="main\\assets\\resume\\KrishnaDataScientist.pdf" download="KrishnaDataScientist.pdf" class="form-btn">Download Data Science Resume</a>
       </section>
 
+      <section class="resume-download-section">
+        <a href="main\\assets\\resume\\KrishnaResearchCV.pdf" download="KrishnaResearchCV.pdf" class="form-btn">Download Research CV</a>
+      </section>
 
     </aside>
 
@@ -196,7 +218,7 @@
 
         <section class="about-text">
           <p>
-            Hi, I'm Krishna Thakar, a dedicated Computer Science student specializing in Data Science at Southeast Missouri State University. With a strong academic foundation and a 3.9 GPA, I've consistently earned recognition through placements on both the Dean’s List and President’s List.
+            Hi, I'm Krishna Thakar, a dedicated Computer Science student specializing in Data Science at Southeast Missouri State University. With a strong academic foundation and a 3.9 GPA, I've consistently earned recognition through placements on both the Dean's List and President's List.
           </p>
 
           <p>
@@ -216,7 +238,7 @@
           </p>
 
           <p>
-            My commitment to continuous learning is supported by certifications in supervised machine learning and exploratory data analysis from Deeplearning.AI and IBM, respectively. Through my experience as an IT support specialist and Resident Assistant, I’ve developed strong skills in problem-solving, communication, and leadership.
+            My commitment to continuous learning is supported by certifications in supervised machine learning and exploratory data analysis from Deeplearning.AI and IBM, respectively. Through my experience as an IT support specialist and Resident Assistant, I've developed strong skills in problem-solving, communication, and leadership.
           </p>
 
           <p>
@@ -403,7 +425,7 @@
                 -	Delivered prompt walk-up support with an average resolution time under 10 minutes for common technical problems.
               </p>
               <p class="timeline-text">
-                -	Documented incidents and resolutions in the university’s ticketing system, improving tracking and future troubleshooting efforts.
+                -	Documented incidents and resolutions in the university's ticketing system, improving tracking and future troubleshooting efforts.
               </p>
               
             </li>

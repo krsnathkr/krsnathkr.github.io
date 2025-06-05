@@ -1581,22 +1581,43 @@ textarea.form-input::-webkit-resizer {
 }
 
   .skill-pill {
-    display: inline-block;
-    /* fallback color */
-    background-color: #588157;
-    /* modern var */
-    background-color: var(--onyx);
-    color: #fff0db;
-    padding: 8px 16px;
-    border-radius: 10px;
-    white-space: nowrap;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 20px;
+    border-radius: 14px;
+    font-size: var(--fs-6);
+    text-transform: capitalize;
+    background: var(--border-gradient-onyx);
+    color: var(--white-1);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1;
+    transition: var(--transition-1);
+    margin-bottom: 8px;
+  }
+
+  .skill-pill::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: var(--onyx);
+    border-radius: inherit;
+    z-index: -1;
+    transition: var(--transition-1);
   }
 
   .skill-pill:hover {
-    background-color: #283b31;
+    background: var(--bg-gradient-yellow-1);
+    color: var(--white-1);
   }
 
-
+  .skill-pill:hover::before {
+    background: var(--bg-gradient-yellow-2);
+  }
 
   .project-img,
   .blog-banner-box {
