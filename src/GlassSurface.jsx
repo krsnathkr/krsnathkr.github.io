@@ -156,7 +156,10 @@ const GlassSurface = ({
         borderRadius: `${borderRadius}px`,
         '--glass-frost': backgroundOpacity,
         '--glass-saturation': saturation,
-        '--filter-id': `url(#${filterId})`
+        '--filter-id': `url(#${filterId})`,
+        '--glass-opacity': opacity,
+        '--glass-blur': `${blur}px`,
+        '--glass-brightness': `${brightness}%`
     };
 
     return (
