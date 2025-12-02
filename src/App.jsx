@@ -1353,7 +1353,7 @@ const App = () => {
                                                 <Linkedin size={24} className="relative z-10" />
                                             </GlassSurface>
                                         </a>
-                                        <a href="/cv.pdf" className="block group">
+                                        <a href="/Krishna_Resume.pdf" download="Krishna_Resume.pdf" className="block group">
                                             <GlassSurface
                                                 borderRadius={9999}
                                                 width="auto"
@@ -1462,7 +1462,7 @@ const App = () => {
                                 <div className="flex gap-8">
                                     <a href={RESUME_DATA.socials.linkedin} className="text-lg font-bold uppercase tracking-wider hover:underline inline-block p-2">LinkedIn</a>
                                     <a href={RESUME_DATA.socials.github} className="text-lg font-bold uppercase tracking-wider hover:underline inline-block p-2">GitHub</a>
-                                    <a href="/cv.pdf" className="text-lg font-bold uppercase tracking-wider hover:underline inline-block p-2">Resume</a>
+                                    <a href="/Krishna_Resume.pdf" download="Krishna_Resume.pdf" className="text-lg font-bold uppercase tracking-wider hover:underline inline-block p-2">Resume</a>
                                 </div>
                             </div>
                         </div>
