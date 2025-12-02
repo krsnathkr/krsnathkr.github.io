@@ -137,16 +137,9 @@ const GlassSurface = ({
     }, [width, height]);
 
     const supportsSVGFilters = () => {
-        const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-        const isFirefox = /Firefox/.test(navigator.userAgent);
-
-        if (isWebkit || isFirefox) {
-            return false;
-        }
-
         const div = document.createElement('div');
         div.style.backdropFilter = `url(#${filterId})`;
-        return div.style.backdropFilter !== '';
+        return div.style.backdropFilter !== '' && div.style.backdropFilter !== 'none';
     };
 
     const containerStyle = {
@@ -158,6 +151,7 @@ const GlassSurface = ({
         '--glass-saturation': saturation,
         '--filter-id': `url(#${filterId})`,
         '--glass-opacity': opacity,
+        '--glass-fallback-opacity': opacity * 0.08,
         '--glass-blur': `${blur}px`,
         '--glass-brightness': `${brightness}%`
     };

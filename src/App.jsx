@@ -68,7 +68,7 @@ const RESUME_DATA = {
     ],
     experience: [
         {
-            role: "Web Developer",
+            role: "GA Web Developer",
             company: "Southeast Missouri State University",
             period: "Aug 2025 - Present",
             summary: "I handle my own university - SEMO's official website (semo.edu) as a Graduate Assistant.",
