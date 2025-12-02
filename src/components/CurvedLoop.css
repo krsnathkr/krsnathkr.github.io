@@ -1,0 +1,51 @@
+.curved-loop-jacket {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    --loop-bg-width: 230px;
+    --loop-border-width: 3px;
+}
+
+.curved-loop-border {
+    fill: none;
+    stroke: #454545;
+    stroke-width: calc(var(--loop-bg-width) + var(--loop-border-width) * 2);
+    stroke-linecap: round;
+}
+
+.curved-loop-bg {
+    fill: none;
+    stroke: white;
+    stroke-width: var(--loop-bg-width);
+    stroke-linecap: round;
+}
+
+@media (min-width: 768px) {
+    .curved-loop-jacket {
+        --loop-bg-width: 160px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .curved-loop-jacket {
+        --loop-bg-width: 90px;
+    }
+}
+
+.curved-loop-svg {
+    user-select: none;
+    width: 100%;
+    aspect-ratio: 100 / 12;
+    overflow: visible;
+    display: block;
+    font-size: 6rem;
+    fill: currentColor;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+}
