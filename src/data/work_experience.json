@@ -1,0 +1,74 @@
+[
+    {
+        "role": "GA Web Developer",
+        "company": "Southeast Missouri State University",
+        "period": "Aug 2025 - Present",
+        "summary": "I handle my own university - SEMO's official website (semo.edu) as a Graduate Assistant.",
+        "points": [
+            "Developing reusable web components and custom page templates.",
+            "Maintaining official university website semo.edu."
+        ],
+        "featured": true
+    },
+    {
+        "role": "Founder / VP",
+        "company": "Hacklabs SEMO",
+        "period": "Sep 2025 - Present",
+        "summary": "Organizing student teams and building industry connections for SEMO's official hackathon club.",
+        "points": [
+            "HackLab is SEMO's official hackathon club.",
+            "Organizing student teams for hackathons at regional and national competitions.",
+            "Building connections with industry professionals to support members' career growth.",
+            "Developing a space for students to collaborate on real-world technology projects.",
+            "Creating workshops and hands-on projects to help students build practical tech skills."
+        ],
+        "featured": true
+    },
+    {
+        "role": "Machine Learning Researcher",
+        "company": "SEMO Department of Computer Science",
+        "period": "Jan 2025 - May 2025",
+        "summary": "Conducted comparative analysis of ML and Deep Learning models on ~7 million Yelp reviews, achieving top performance with RoBERTa.",
+        "points": [
+            "Worked under the mentorship of Dr. Mohamed Abu Sheha and Dr. Emmanuel Thompson, comparing traditional ML models and deep learning models against fine-tuned RoBERTa for three-way sentiment classification.",
+            "Processed ~7 million Yelp reviews, performing text cleaning, tokenization, lemmatization, negation handling, vectorization, and balancing sentiment classes into equal thirds.",
+            "Developed and evaluated multiple models - including Logistic Regression, SVM, Naïve Bayes, Random Forest, BiLSTM, LSTM, CNN, RNN, GRU, and a fine tuned RoBERTa.",
+            "Used stratified cross validation, confusion matrices, and ROC curves to measure accuracy, precision, recall, F1, and ROC AUC.",
+            "Demonstrated that RoBERTa achieved top performance (accuracy 0.80112, AUC 0.93237) through systematic cross-validation and in-depth analysis."
+        ],
+        "featured": true
+    },
+    {
+        "role": "Resident Assistant",
+        "company": "Southeast Missouri State University",
+        "period": "Jan 2023 - May 2025",
+        "summary": "Mentored 100+ residents and organized campus events to foster a supportive and inclusive community.",
+        "points": [
+            "Cultivating effective communication and mentoring skills by guiding 100+ residents through academic and personal challenges, offering tailored advice, and connecting them with campus resources.",
+            "Demonstrating strong organizational abilities by planning and executing 10+ events annually, ensuring seamless coordination and active participation.",
+            "Strengthening interpersonal skills by fostering a collaborative and inclusive environment, resolving conflicts, and providing ongoing support to residents."
+        ]
+    },
+    {
+        "role": "Information Technology Staff",
+        "company": "SEMO IT",
+        "period": "Sep 2023 - Jan 2025",
+        "summary": "Provided technical support to 100+ users and managed IT inventory for SEMO IT.",
+        "points": [
+            "Developed problem-solving and analytical skills by providing timely technical support to 100+ students and staff, diagnosing and resolving complex hardware and software issues.",
+            "Strengthening organizational skills by managing IT inventory, maintaining accurate records of hardware and software assets, and ensuring compliance with licensing requirements.",
+            "Enhanced communication skills through clear and effective explanations of technical concepts to non-technical users, fostering understanding and independence in technology use."
+        ]
+    },
+    {
+        "role": "Concession Stand Attendant",
+        "company": "Show Me Center",
+        "period": "Nov 2021 - May 2025",
+        "summary": "Ensured smooth operations and provided excellent customer service during high-volume events.",
+        "points": [
+            "Quickly made decisions and delegated tasks to ensure smooth operation during busy events.",
+            "Improved problem-solving skills by thinking on my feet and finding creative solutions to unexpected challenges.",
+            "Provided excellent customer service in a fast-paced environment, handling transactions efficiently and ensuring a positive experience for customers."
+        ]
+    }
+]

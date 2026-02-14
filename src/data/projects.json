@@ -1,0 +1,195 @@
+[
+    {
+        "id": 1,
+        "title": "StealthChess.AI",
+        "cat": "AI/ML",
+        "tags": [
+            "OpenCV",
+            "YOLOv8",
+            "Stockfish"
+        ],
+        "desc": "Real-time chess assistant analyzing live streams from Meta Ray-Ban glasses.",
+        "link": "https://github.com/krsnathkr/cheat-in-chess",
+        "color": "#FF4D4D",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 3,
+        "title": "Knowbl Agentic RAG",
+        "cat": "AI/ML",
+        "tags": [
+            "LangChain",
+            "FAISS",
+            "OpenAI"
+        ],
+        "desc": "Agentic RAG pipeline combining real-time web search and document Q&A.",
+        "link": "https://github.com/krsnathkr/rag-mcp-agenticAI",
+        "color": "#FFD600",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 6,
+        "title": "ASA DataFest Winner",
+        "cat": "Data",
+        "tags": [
+            "R",
+            "Random Forest"
+        ],
+        "desc": "Analysis of 200k+ office lease transactions. Best Use of Statistical Analysis.",
+        "link": "https://www.linkedin.com/feed/update/urn:li:activity:7315084829555847168/",
+        "color": "#2D3436",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 13,
+        "title": "Medi-Compare",
+        "cat": "Data",
+        "tags": [
+            "Healthcare",
+            "Comparison"
+        ],
+        "desc": "Healthcare price transparency platform that empowers patients to compare medical procedure costs across hospitals",
+        "link": "https://www.linkedin.com/posts/krsnathkr_this-weekend-was-intense-in-the-best-way-activity-7396238223242551296-pQFl?utm_source=share&utm_medium=member_desktop&rcm=ACoAADr7XNgB8aXwuDeMHC8K4BnWKnQ7mrV9gZI",
+        "color": "#FF5733",
+        "archived": true
+    },
+    {
+        "id": 4,
+        "title": "Sales Data Pipeline",
+        "cat": "Data",
+        "tags": [
+            "Azure",
+            "dbt",
+            "Spark"
+        ],
+        "desc": "Medallion architecture pipeline processing 1M+ records.",
+        "link": "https://github.com/krsnathkr/dataPipeline",
+        "color": "#FF8800",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 2,
+        "title": "SEMO Esports Platform",
+        "cat": "Web Dev",
+        "tags": [
+            "React",
+            "Node.js",
+            "PostgreSQL"
+        ],
+        "desc": "Full-stack booking system for 150+ students. Reduced congestion by 70%.",
+        "link": "https://github.com/anuragbhattarai31/EsportsWeb",
+        "color": "#00D4FF",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 5,
+        "title": "Echo Chamber",
+        "cat": "AI/ML",
+        "tags": [
+            "Python",
+            "Streamlit",
+            "NLP"
+        ],
+        "desc": "News bias combat platform with 98% sentiment accuracy.",
+        "link": "https://github.com/krsnathkr/NewsML",
+        "color": "#111111",
+        "archived": true
+    },
+    {
+        "id": 7,
+        "title": "Market Radar",
+        "cat": "AI/ML",
+        "tags": [
+            "Gemini API",
+            "Streamlit"
+        ],
+        "desc": "Real-time financial insights and stock visualization.",
+        "link": "https://stockmarketinsights.streamlit.app/",
+        "color": "#FF4D4D",
+        "archived": true
+    },
+    {
+        "id": 8,
+        "title": "Penny Planner",
+        "cat": "AI/ML",
+        "tags": [
+            "OpenAI API",
+            "Plotly"
+        ],
+        "desc": "Bank statement analyzer for personal finance insights.",
+        "link": "https://github.com/krsnathkr/finance-assistant",
+        "color": "#00D4FF",
+        "archived": true
+    },
+    {
+        "id": 9,
+        "title": "Titanic Predictor",
+        "cat": "AI/ML",
+        "tags": [
+            "Scikit-learn",
+            "Pandas"
+        ],
+        "desc": "Survival rate predictor with 83.24% accuracy.",
+        "link": "https://github.com/krsnathkr/TitanicMLprediction",
+        "color": "#FFD600",
+        "archived": true
+    },
+    {
+        "id": 10,
+        "title": "NY Housing Analysis",
+        "cat": "Data",
+        "tags": [
+            "Python",
+            "Plotly"
+        ],
+        "desc": "Geospatial analysis of housing prices.",
+        "link": "https://github.com/krsnathkr/NYHousingPrices",
+        "color": "#FF8800",
+        "archived": true
+    },
+    {
+        "id": 11,
+        "title": "Tic-Tac-Toe",
+        "cat": "Web Dev",
+        "tags": [
+            "JS",
+            "HTML/CSS"
+        ],
+        "desc": "Classic game with local storage and themes.",
+        "link": "https://github.com/krsnathkr/Tic-Tac-toe",
+        "color": "#111111",
+        "archived": true
+    },
+    {
+        "id": 12,
+        "title": "Multi-Port Server",
+        "cat": "Web Dev",
+        "tags": [
+            "Flask",
+            "Socket"
+        ],
+        "desc": "Fault-tolerant distributed system.",
+        "link": "https://github.com/krsnathkr/FlaskMessagingSystem",
+        "color": "#2D3436",
+        "archived": true
+    },
+    {
+        "id": 14,
+        "title": "Comparative Study on ML Models for YELP Review Classification",
+        "cat": "Research",
+        "tags": [
+            "Conference",
+            "Student",
+            "Research"
+        ],
+        "desc": "Compared the performance of different machine learning models for Yelp review classification.",
+        "link": "https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing",
+        "color": "#33C3FF",
+        "archived": true
+    }
+]
