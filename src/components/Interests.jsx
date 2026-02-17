@@ -31,9 +31,9 @@ const Interests = () => {
             <SectionTitle title="Beyond Code" className="mb-6" />
             <div className="mb-8">
                 <div className="flex flex-wrap gap-2 text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                    <InterestWithMedia label="Rock Climbing" media="/rock-climb.mp4" />
+                    <InterestWithMedia label="Rock Climbing" media="/rock-climb-compressed.mp4" />
                     <span>·</span>
-                    <InterestWithMedia label="Cliff Jumping" media="/cliff-jump.mov" />
+                    <InterestWithMedia label="Cliff Jumping" media="/cliff-jump-compressed.mp4" />
                     <span>·</span>
                     <span>Hiking</span>
                 </div>
