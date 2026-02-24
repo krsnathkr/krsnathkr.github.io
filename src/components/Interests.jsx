@@ -4,6 +4,7 @@ import SectionTitle from './SectionTitle';
 const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) => {
     const [isOpen, setIsOpen] = useState(false);
     const itemRef = useRef(null);
+    const touchTimeoutRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -17,26 +18,48 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) =>
         return () => {
             document.removeEventListener('touchstart', handleClickOutside);
             document.removeEventListener('mousedown', handleClickOutside);
+            if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
         };
     }, []);
 
+    const handleInteraction = (e) => {
+        // Prevent default only if we are taking over the touch action entirely
+        // but for iOS Safari we generally want the tap to go through so focus fires
+        if (onClickAction) onClickAction();
+        setIsOpen((prev) => !prev);
+    };
+
     return (
-        <div
+        <button
             ref={itemRef}
-            className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black`}
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
-            onClick={() => {
-                if (onClickAction) onClickAction();
-                setIsOpen(!isOpen);
+            type="button"
+            aria-expanded={isOpen}
+            className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400`}
+            onMouseEnter={() => {
+                // Ignore mouse enter if we recently processed a touch event (fixes iOS double-firing)
+                if (touchTimeoutRef.current) return;
+                setIsOpen(true);
             }}
+            onMouseLeave={() => {
+                if (touchTimeoutRef.current) return;
+                setIsOpen(false);
+            }}
+            onTouchStart={() => {
+                // Set a flag that a touch started, clear it after a delay
+                touchTimeoutRef.current = setTimeout(() => {
+                    touchTimeoutRef.current = null;
+                }, 500);
+            }}
+            onClick={handleInteraction}
         >
             <span>{label}</span>
-            <div className={`transition-all duration-300 transform absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'
-                } ${tooltipClassName}`}>
+            <div
+                className={`transition-all duration-300 transform absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'
+                    } ${tooltipClassName}`}
+            >
                 {children}
             </div>
-        </div>
+        </button>
     );
 };
 
