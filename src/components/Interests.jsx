@@ -1,27 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SectionTitle from './SectionTitle';
+
+const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const itemRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (itemRef.current && !itemRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('touchstart', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('touchstart', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    return (
+        <div
+            ref={itemRef}
+            className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black`}
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+            onClick={() => {
+                if (onClickAction) onClickAction();
+                setIsOpen(!isOpen);
+            }}
+        >
+            <span>{label}</span>
+            <div className={`transition-all duration-300 transform absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'
+                } ${tooltipClassName}`}>
+                {children}
+            </div>
+        </div>
+    );
+};
 
 const InterestWithMedia = ({ label, media }) => {
     const isVideo = media.endsWith('.mp4') || media.endsWith('.mov');
 
     return (
-        <div className="group relative inline-block cursor-help underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black">
-            <span>{label}</span>
-            <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-2 py-2 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 min-w-[200px] after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100">
-                {isVideo ? (
-                    <video
-                        src={media}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-auto rounded-md object-cover block"
-                    />
-                ) : (
-                    <img src={media} alt={label} className="w-full h-auto rounded-md object-cover block" />
-                )}
-            </div>
-        </div>
+        <HoverItem label={label} tooltipClassName="min-w-[200px] px-2 py-2">
+            {isVideo ? (
+                <video
+                    src={media}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-auto rounded-md object-cover block"
+                />
+            ) : (
+                <img src={media} alt={label} className="w-full h-auto rounded-md object-cover block" />
+            )}
+        </HoverItem>
     );
 };
 
@@ -44,27 +80,25 @@ const Interests = () => {
                     Weird things I like
                 </h3>
                 <div className="flex flex-wrap gap-2 text-sm text-gray-500 dark:text-gray-400 font-light">
-                    <div className="group relative inline-block cursor-help underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black">
-                        <span>Web Browsers</span>
-                        <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-lg shadow-xl pointer-events-none text-center whitespace-nowrap w-max z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100">
-                            I like trying new web browsers.<br />My current favorite is <img src="/arc.png" alt="Arc" className="w-5 h-5 inline-block mx-1 align-middle" /> Arc Browser
-                        </div>
-                    </div>
+                    <HoverItem
+                        label="Web Browsers"
+                        tooltipClassName="px-3 py-2 text-white dark:text-gray-900 text-xs text-center whitespace-nowrap w-max"
+                    >
+                        I like trying new web browsers.<br />My current favorite is <img src="/arc.png" alt="Arc" className="w-5 h-5 inline-block mx-1 align-middle" /> Arc Browser
+                    </HoverItem>
                     <span>·</span>
                     <span>Credit Cards</span>
                     <span>·</span>
-                    <div
-                        className="group relative inline-block cursor-pointer underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black"
-                        onClick={() => document.body.classList.toggle('ibm-plex-sans-theme')}
+                    <HoverItem
+                        label="IBM Plex Sans"
+                        tooltipClassName="px-2 py-1 text-white dark:text-gray-900 text-xs whitespace-nowrap"
+                        onClickAction={() => document.body.classList.toggle('ibm-plex-sans-theme')}
                     >
-                        <span>IBM Plex Sans</span>
-                        <div className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-2 py-1 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs rounded-lg shadow-xl pointer-events-none whitespace-nowrap z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100">
-                            click me
-                        </div>
-                    </div>
+                        click me
+                    </HoverItem>
                 </div>
             </div>
-        </section >
+        </section>
     );
 };
 
