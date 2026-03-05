@@ -1,13 +1,20 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeContext';
+import { useWebHaptics } from 'web-haptics/react';
 
 const ThemeToggle = () => {
     const { isDark, toggleTheme } = useTheme();
+    const { trigger } = useWebHaptics();
+
+    const handleClick = () => {
+        trigger("success");
+        toggleTheme();
+    };
 
     return (
         <button
-            onClick={toggleTheme}
+            onClick={handleClick}
             className="fixed top-6 right-6 z-50 p-2.5 rounded-full
                        bg-gray-100 dark:bg-gray-800
                        text-gray-600 dark:text-gray-300
