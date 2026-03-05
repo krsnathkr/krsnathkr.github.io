@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SectionTitle from './SectionTitle';
 
-const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) => {
+const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobileAlignment = "center" }) => {
     const [isOpen, setIsOpen] = useState(false);
     const itemRef = useRef(null);
     const touchTimeoutRef = useRef(null);
@@ -54,8 +54,12 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) =>
         >
             <span>{label}</span>
             <div
-                className={`transition-all duration-300 transform absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'
-                    } ${tooltipClassName}`}
+                className={`transition-all duration-300 transform absolute bottom-full left-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${{
+                        center: "-translate-x-1/2 after:left-1/2",
+                        left: "-translate-x-[20%] sm:-translate-x-1/2 after:left-[20%] sm:after:left-1/2",
+                        right: "-translate-x-[80%] sm:-translate-x-1/2 after:left-[80%] sm:after:left-1/2",
+                    }[mobileAlignment] || "-translate-x-1/2 after:left-1/2"
+                    } ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'} ${tooltipClassName}`}
             >
                 {children}
             </div>
@@ -63,11 +67,11 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction }) =>
     );
 };
 
-const InterestWithMedia = ({ label, media }) => {
+const InterestWithMedia = ({ label, media, mobileAlignment = "center" }) => {
     const isVideo = media.endsWith('.mp4') || media.endsWith('.mov');
 
     return (
-        <HoverItem label={label} tooltipClassName="min-w-[200px] px-2 py-2">
+        <HoverItem label={label} tooltipClassName="min-w-[200px] px-2 py-2" mobileAlignment={mobileAlignment}>
             {isVideo ? (
                 <video
                     src={media}
@@ -90,7 +94,7 @@ const Interests = () => {
             <SectionTitle title="Beyond Code" className="mb-6" />
             <div className="mb-8">
                 <div className="flex flex-wrap gap-2 text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
-                    <InterestWithMedia label="Rock Climbing" media="/rock-climb-compressed.mp4" />
+                    <InterestWithMedia label="Rock Climbing" media="/rock-climb-compressed.mp4" mobileAlignment="left" />
                     <span>·</span>
                     <InterestWithMedia label="Cliff Jumping" media="/cliff-jump-compressed.mp4" />
                     <span>·</span>
@@ -106,6 +110,7 @@ const Interests = () => {
                     <HoverItem
                         label="Web Browsers"
                         tooltipClassName="px-3 py-2 text-white dark:text-gray-900 text-xs text-center whitespace-nowrap w-max"
+                        mobileAlignment="left"
                     >
                         I like trying new web browsers.<br />My current favorite is <img src="/arc.png" alt="Arc" className="w-5 h-5 inline-block mx-1 align-middle" /> Arc Browser
                     </HoverItem>

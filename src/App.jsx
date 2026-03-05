@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useWebHaptics } from 'web-haptics/react';
 import { ThemeProvider, useTheme } from './components/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import Hero from './components/Hero';
@@ -18,6 +19,22 @@ import Contact from './components/Contact';
 function AppContent() {
   const [showArchive, setShowArchive] = useState(false);
   const { isDark } = useTheme();
+  const { trigger } = useWebHaptics();
+
+  useEffect(() => {
+    const handlePointerDown = (e) => {
+      // Find out if what we clicked was a link, button, or inside one
+      const target = e.target.closest('a, button, [role="button"]');
+      if (target) {
+        trigger("nudge");
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [trigger]);
 
   return (
     <ClickSpark sparkColor={isDark ? '#fff' : '#111'} sparkSize={10} sparkRadius={20} sparkCount={8} duration={400}>
