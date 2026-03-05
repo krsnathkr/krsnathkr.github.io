@@ -22,7 +22,7 @@ function AppContent() {
   const { trigger } = useWebHaptics();
 
   useEffect(() => {
-    const handlePointerDown = (e) => {
+    const handleClick = (e) => {
       // Find out if what we clicked was a link, button, or inside one
       const target = e.target.closest('a, button, [role="button"]');
       if (target) {
@@ -30,9 +30,9 @@ function AppContent() {
       }
     };
 
-    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("click", handleClick);
     return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("click", handleClick);
     };
   }, [trigger]);
 
