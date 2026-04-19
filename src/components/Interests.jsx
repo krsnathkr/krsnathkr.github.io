@@ -29,6 +29,12 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobi
         setIsOpen((prev) => !prev);
     };
 
+    const alignmentClasses = {
+        center: "-translate-x-1/2 after:left-1/2",
+        left: "-translate-x-[15%] sm:-translate-x-1/2 after:left-[15%] sm:after:left-1/2",
+        right: "-translate-x-[85%] sm:-translate-x-1/2 after:left-[85%] sm:after:left-1/2",
+    }[mobileAlignment] || "-translate-x-1/2 after:left-1/2";
+
     return (
         <button
             ref={itemRef}
@@ -54,12 +60,7 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobi
         >
             <span>{label}</span>
             <div
-                className={`transition-all duration-300 transform absolute bottom-full left-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${{
-                        center: "-translate-x-1/2 after:left-1/2",
-                        left: "-translate-x-[20%] sm:-translate-x-1/2 after:left-[20%] sm:after:left-1/2",
-                        right: "-translate-x-[80%] sm:-translate-x-1/2 after:left-[80%] sm:after:left-1/2",
-                    }[mobileAlignment] || "-translate-x-1/2 after:left-1/2"
-                    } ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'} ${tooltipClassName}`}
+                className={`transition-all duration-300 transform absolute bottom-full left-1/2 mb-3 bg-gray-900 dark:bg-gray-100 rounded-lg shadow-xl pointer-events-none z-50 after:content-[''] after:absolute after:top-full after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-gray-900 dark:after:border-t-gray-100 ${alignmentClasses} ${isOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 translate-y-2'} ${tooltipClassName}`}
             >
                 {children}
             </div>
@@ -99,6 +100,15 @@ const Interests = () => {
                     <InterestWithMedia label="Cliff Jumping" media="/cliff-jump-compressed.mp4" />
                     <span>·</span>
                     <span>Hiking</span>
+                    <span>·</span>
+                    <a
+                        href="https://www.nasa.gov/images/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block cursor-pointer underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    >
+                        Space & Universe
+                    </a>
                 </div>
             </div>
 
