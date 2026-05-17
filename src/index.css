@@ -220,25 +220,3 @@ body.ibm-plex-sans-theme * {
     }
 }
 
-@keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-    animation: marquee var(--marquee-duration, 24s) linear infinite;
-}
-
-.animate-marquee:hover,
-.animate-marquee:focus-within {
-    animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .animate-marquee {
-        animation: none;
-    }
-    .animate-marquee [class*="animate-pulse"] {
-        animation: none;
-    }
-}

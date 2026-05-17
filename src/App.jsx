@@ -16,7 +16,6 @@ import Archive from './components/Archive';
 import ClickSpark from './components/ClickSpark';
 import Contact from './components/Contact';
 import Ticker from './components/Ticker';
-import highlights from './data/highlights.json';
 
 function AppContent() {
   const [showArchive, setShowArchive] = useState(false);
@@ -40,7 +39,7 @@ function AppContent() {
 
   return (
     <ClickSpark sparkColor={isDark ? '#fff' : '#111'} sparkSize={10} sparkRadius={20} sparkCount={8} duration={400}>
-      <div className={`bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-900 selection:text-white dark:selection:bg-white dark:selection:text-gray-900 min-h-screen transition-colors duration-0 ${highlights.length > 0 ? 'pt-9' : ''}`}>
+      <div className="bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-900 selection:text-white dark:selection:bg-white dark:selection:text-gray-900 min-h-screen transition-colors duration-0">
         <Ticker />
         <ThemeToggle />
         <div className="max-w-2xl mx-auto px-6 py-20 md:py-28">
