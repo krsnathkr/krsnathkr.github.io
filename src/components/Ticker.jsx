@@ -21,7 +21,6 @@ const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
         ) : (
             <span className="text-sm font-light text-gray-600 dark:text-gray-400">{item.text}</span>
         )}
-        <span className="mx-4 text-gray-400 dark:text-gray-600">·</span>
     </span>
 );
 
