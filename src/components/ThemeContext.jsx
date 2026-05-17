@@ -27,7 +27,7 @@ export const ThemeProvider = ({ children }) => {
     const toggleTheme = useCallback((event) => {
         // Get coordinates from the toggle button click
         const x = event?.clientX ?? window.innerWidth - 40;
-        const y = event?.clientY ?? 20;
+        const y = event?.clientY ?? window.innerHeight - 40;
 
         // Set CSS custom properties for the animation origin
         document.documentElement.style.setProperty('--toggle-x', `${x}px`);
