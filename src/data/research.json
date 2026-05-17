@@ -1,0 +1,41 @@
+[
+    {
+        "id": 3,
+        "label": "Working on it, right now!",
+        "title": "Stock Market Heterogeneous Graph Transformer",
+        "desc": "Heterogeneous graph transformer for 21-day S&P 500 return prediction. +82% IC over Ridge baseline.",
+        "link": "https://github.com/krsnathkr/smhgt-thesis",
+        "contributors": [
+            {
+                "role": "Advisor",
+                "name": "Dr. Ziping Liu"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "label": "Comparative Study",
+        "title": "Sentiment Analysis of Yelp Review Dataset",
+        "desc": "Investigated effectiveness of SVM, Random Forest vs CNN, BILSTM, and RoBERTa.",
+        "link": "https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing",
+        "contributors": [
+            {
+                "role": "Contributors",
+                "name": "Dr. Mohamed Abu Sheha & Dr. Emmanuel Thompson"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "label": "Ethics Paper",
+        "title": "From War Machine to Peacemaker: Duality of AI",
+        "desc": "Explored ethical concerns of autonomous weapons vs AI in peace negotiations.",
+        "link": "https://www.linkedin.com/posts/krsnathkr_i-recently-had-the-amazing-opportunity-to-activity-7189376764937232384-uRCu",
+        "contributors": [
+            {
+                "role": "Contributors",
+                "name": "Dr. Mitra"
+            }
+        ]
+    }
+]

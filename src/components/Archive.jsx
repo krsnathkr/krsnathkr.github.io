@@ -1,25 +1,18 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
+import projectsData from '../data/projects.json';
 
 const Archive = ({ onBack }) => {
     const [filter, setFilter] = useState('All');
 
-    const projects = [
-        { name: 'StealthChess.AI', category: 'AI/ML', builtWith: 'OpenCV, YOLOv8', link: 'https://github.com/krsnathkr/cheat-in-chess' },
-        { name: 'Knowbl Agentic RAG', category: 'AI/ML', builtWith: 'LangChain, OpenAI', link: 'https://github.com/krsnathkr/rag-mcp-agenticAI' },
-        { name: 'ASA DataFest Winner', category: 'Data', builtWith: 'R, Random Forest', link: 'https://www.linkedin.com/feed/update/urn:li:activity:7315084829555847168/' },
-        { name: 'Medi-Compare', category: 'Data', builtWith: 'Healthcare, Data', link: 'https://www.linkedin.com/posts/krsnathkr_this-weekend-was-intense-in-the-best-way-activity-7396238223242551296-pQFl' },
-        { name: 'Sales Data Pipeline', category: 'Data', builtWith: 'Azure, dbt, Spark', link: 'https://github.com/krsnathkr/dataPipeline' },
-        { name: 'SEMO Esports Platform', category: 'Web Dev', builtWith: 'React, Node, PG', link: 'https://github.com/anuragbhattarai31/EsportsWeb' },
-        { name: 'Echo Chamber', category: 'AI/ML', builtWith: 'Python, Streamlit', link: 'https://github.com/krsnathkr/NewsML' },
-        { name: 'Market Radar', category: 'AI/ML', builtWith: 'Gemini API', link: 'https://stockmarketinsights.streamlit.app/' },
-        { name: 'Penny Planner', category: 'AI/ML', builtWith: 'OpenAI API, Plotly', link: 'https://github.com/krsnathkr/finance-assistant' },
-        { name: 'Titanic Predictor', category: 'AI/ML', builtWith: 'Scikit-learn', link: 'https://github.com/krsnathkr/TitanicMLprediction' },
-        { name: 'NY Housing Analysis', category: 'Data', builtWith: 'Python, Plotly', link: 'https://github.com/krsnathkr/NYHousingPrices' },
-        { name: 'Tic-Tac-Toe', category: 'Web Dev', builtWith: 'JS, HTML/CSS', link: 'https://github.com/krsnathkr/Tic-Tac-toe' },
-        { name: 'Multi-Port Server', category: 'Web Dev', builtWith: 'Flask, Socket', link: 'https://github.com/krsnathkr/FlaskMessagingSystem' },
-        { name: 'Yelp Review Study', category: 'Research', builtWith: 'NLP, RoBERTa', link: 'https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing' },
-    ];
+    const projects = [...projectsData]
+        .sort((a, b) => b.id - a.id)
+        .map(p => ({
+            name: p.title,
+            category: p.cat,
+            builtWith: p.tags.join(', '),
+            link: p.link,
+        }));
 
     const categories = ['All', ...new Set(projects.map(project => project.category))];
 
