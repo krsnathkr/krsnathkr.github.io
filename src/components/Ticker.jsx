@@ -9,6 +9,7 @@ const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                tabIndex={ariaHidden === "true" ? -1 : 0}
                 className="text-sm font-light text-gray-600 dark:text-gray-400 hover:underline"
             >
                 {item.text}

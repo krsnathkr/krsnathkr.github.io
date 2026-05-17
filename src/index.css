@@ -238,4 +238,7 @@ body.ibm-plex-sans-theme * {
     .animate-marquee {
         animation: none;
     }
+    .animate-marquee [class*="animate-pulse"] {
+        animation: none;
+    }
 }
