@@ -9,7 +9,7 @@ const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                tabIndex={ariaHidden === "true" ? -1 : 0}
+                tabIndex={ariaHidden ? -1 : 0}
                 className="text-sm font-light text-gray-600 dark:text-gray-400 hover:underline"
             >
                 {item.text}
@@ -29,7 +29,11 @@ const Ticker = () => {
     const duration = `${highlights.length * 8}s`;
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-[60] h-9 flex items-center overflow-hidden bg-white dark:bg-[#0a0a0a] border-b border-gray-100 dark:border-gray-800">
+        <div
+            role="region"
+            aria-label="Recent highlights"
+            className="fixed top-0 left-0 right-0 z-[60] h-9 flex items-center overflow-hidden bg-white dark:bg-[#0a0a0a] border-b border-gray-100 dark:border-gray-800"
+        >
             <div
                 className="flex whitespace-nowrap animate-marquee"
                 style={{ '--marquee-duration': duration }}
