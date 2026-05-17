@@ -179,6 +179,64 @@
         "archived": true
     },
     {
+        "id": 15,
+        "title": "SMHGT",
+        "cat": "Research",
+        "tags": [
+            "Graph Neural Net",
+            "PyTorch",
+            "Finance"
+        ],
+        "desc": "Heterogeneous graph transformer for 21-day S&P 500 return prediction. +82% IC over Ridge baseline. Master's thesis.",
+        "link": "https://github.com/krsnathkr/smhgt-thesis",
+        "color": "#7B1FA2",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 16,
+        "title": "GeoSTL Hackathon",
+        "cat": "AI/ML",
+        "tags": [
+            "AWS Bedrock",
+            "Mapillary",
+            "FastAPI"
+        ],
+        "desc": "Sidewalk infrastructure inventory from street-level video using Bedrock Pegasus and Overture Maps geospatial data.",
+        "link": "https://github.com/krsnathkr/geoSTL-hackathon",
+        "color": "#00897B",
+        "archived": true,
+        "featured": true
+    },
+    {
+        "id": 17,
+        "title": "Onco-Consensus",
+        "cat": "AI/ML",
+        "tags": [
+            "Multi-Agent",
+            "Gemini",
+            "LLaMA"
+        ],
+        "desc": "Three LLM agents debate breast cancer FNA biopsy data over 3 rounds; a Gemini meta-synthesizer produces a consensus diagnosis.",
+        "link": "https://github.com/krsnathkr/Onco-Consensus",
+        "color": "#E91E63",
+        "archived": true
+    },
+    {
+        "id": 18,
+        "title": "Tick",
+        "cat": "Web Dev",
+        "tags": [
+            "React",
+            "TypeScript",
+            "Gemini API"
+        ],
+        "desc": "Tinder-style stock discovery app with swipe gestures, AI-powered bull/bear analysis, and a built-in watchlist.",
+        "link": "https://github.com/krsnathkr/washu",
+        "color": "#0288D1",
+        "archived": true
+    },
+    {
         "id": 14,
         "title": "Comparative Study on ML Models for YELP Review Classification",
         "cat": "Research",
