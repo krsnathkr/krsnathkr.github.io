@@ -7,7 +7,7 @@ const HOVER_FRICTION = 0.88;  // stronger decay when hovering to stop
 
 const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
     <span className="flex items-center" aria-hidden={ariaHidden}>
-        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse mx-4 flex-shrink-0" />
+        <span className="w-1.5 h-1.5 rounded-full animate-pulse mx-4 flex-shrink-0" style={{ backgroundColor: '#2776EA' }} />
         {item.url ? (
             <a
                 href={item.url}
@@ -131,7 +131,7 @@ const Ticker = () => {
             onMouseEnter={() => { isHovering.current = true; }}
             onMouseLeave={() => { isHovering.current = false; isDragging.current = false; }}
         >
-            <span className="flex-shrink-0 px-3 text-xs font-semibold tracking-widest uppercase text-green-600 dark:text-green-400 border-r border-gray-100 dark:border-gray-800 self-stretch flex items-center bg-white dark:bg-[#0a0a0a] z-10 select-none">
+            <span className="flex-shrink-0 px-3 text-xs font-semibold tracking-widest uppercase border-r border-gray-100 dark:border-gray-800 self-stretch flex items-center bg-white dark:bg-[#0a0a0a] z-10 select-none" style={{ color: '#2776EA' }}>
                 Recent Wins
             </span>
             <div
