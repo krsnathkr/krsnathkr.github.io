@@ -13,7 +13,7 @@ A pinned full-width ticker ribbon at the top of the viewport, displaying 1–4 s
 
 ## Placement & Layout
 
-- `position: fixed; top: 0; left: 0; right: 0; z-index: 50`
+- `position: fixed; top: 0; left: 0; right: 0; z-index: 60` (bumped above `ThemeToggle` which occupies `z-index: 50`)
 - Height: `36px` (fits one line of `text-sm`)
 - Background: `bg-white dark:bg-[#0a0a0a]` — matches the page exactly
 - Bottom border: `1px solid` in `gray-100` / `gray-800` — same token used by existing section dividers
@@ -41,7 +41,8 @@ Each item renders as:
 - CSS `@keyframes marquee` translates X from `0` to `-50%` over a configurable duration
 - Items array is duplicated (`[...items, ...items]`) so the loop seam is invisible
 - Speed: duration calculated as `items.length * 8s` (8 seconds per item), giving consistent pace regardless of count
-- On hover: `animation-play-state: paused` — scrolling freezes until mouse leaves
+- On hover or keyboard focus: CSS `:hover` and `:focus-within` pseudo-classes set `animation-play-state: paused` — no React state or event handlers needed
+- `prefers-reduced-motion: reduce` disables the marquee and the pulsing dot entirely
 - Overflow hidden on the container clips the strip cleanly at both edges
 
 ---
@@ -72,7 +73,9 @@ Editing highlights requires only changing this JSON file, no component code chan
 - Renders the fixed bar otherwise
 - Duplicates the items array for seamless looping: `const items = [...highlights, ...highlights]`
 - Sets `--marquee-duration` as an inline CSS variable on the scrolling div: `style={{ '--marquee-duration': `${highlights.length * 8}s` }}`
-- Applies `onMouseEnter` / `onMouseLeave` to toggle `animationPlayState` via inline style on the scrolling inner div
+- Pause is handled entirely in CSS via `.animate-marquee:hover, .animate-marquee:focus-within { animation-play-state: paused }` — no React state or mouse event handlers
+- Renders with `role="region" aria-label="Recent highlights"` on the container
+- Second (duplicate) render pass uses `aria-hidden="true"` and `tabIndex={-1}` on links to prevent double-announcement by screen readers
 
 ### `src/index.css`
 Add `@keyframes marquee`:
