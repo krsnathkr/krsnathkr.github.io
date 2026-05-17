@@ -1,5 +1,15 @@
 [
     {
+        "role": "Data Engineer Intern",
+        "company": "Pubgen.ai",
+        "period": "May 2026 - Present",
+        "summary": "Building data infrastructure and pipelines to support AI-driven publishing workflows.",
+        "points": [
+            "Designing and maintaining data pipelines for AI publishing workflows."
+        ],
+        "featured": true
+    },
+    {
         "role": "GA Web Developer",
         "company": "Southeast Missouri State University",
         "period": "Aug 2025 - Present",

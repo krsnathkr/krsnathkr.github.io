@@ -20,14 +20,14 @@ const Hero = () => {
                 Krishna Thakar
             </h1>
             <p className="text-base text-gray-400 dark:text-gray-500 mb-8">
-                Masters in CS · Web Developer · ML Researcher
+                Masters in CS · Data Engineer · ML Researcher
             </p>
 
             <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 max-w-xl">
-                I currently work as a web developer for my university, building real systems that students use every day, while also conducting machine-learning research with faculty.
+                I currently work as a Data Engineer Intern at Pubgen.ai, a web developer for my university, and a deep learning researcher with my professor — all at once.
             </p>
             <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-8 max-w-xl">
-                I am working toward becoming a machine learning engineer or data scientist, with the goal of building intelligent solutions that are not just theoretically strong, but practical and ready for real world use.
+                I am working toward becoming an ML engineer or data scientist/engineer, with the goal of building intelligent solutions that are not just theoretically strong, but practical and ready for real-world use.
             </p>
 
             {/* Social Links */}
