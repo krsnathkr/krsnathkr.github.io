@@ -219,3 +219,12 @@ body.ibm-plex-sans-theme * {
         clip-path: circle(150% at var(--toggle-x, 95%) var(--toggle-y, 5%));
     }
 }
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee var(--marquee-duration, 24s) linear infinite;
+}
