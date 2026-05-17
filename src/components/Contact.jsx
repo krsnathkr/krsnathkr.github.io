@@ -1,10 +1,10 @@
 import React from 'react';
-import { Eye } from 'lucide-react';
+import { Eye } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 
 const Contact = () => {
     return (
-        <section className="mb-20">
+        <section id="contact" className="mb-20">
             <SectionTitle title="Get in Touch" className="mb-4" />
             <p className="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">
                 Connect with me on{' '}

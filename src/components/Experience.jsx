@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import workExperience from '../data/work_experience.json';
 
@@ -14,11 +14,8 @@ const ExperienceItem = ({ title, date, org, description }) => (
     </div>
 );
 
-const Experience = () => {
-    const [isPastOpen, setIsPastOpen] = useState(false);
-
+const Experience = ({ onFullResumeClick }) => {
     const featured = workExperience.filter(e => e.featured);
-    const past = workExperience.filter(e => !e.featured);
 
     return (
         <section id="experience" className="mb-20">
@@ -34,32 +31,15 @@ const Experience = () => {
                         description={e.summary}
                     />
                 ))}
+            </div>
 
-                {past.length > 0 && (
-                    <div>
-                        <button
-                            onClick={() => setIsPastOpen(!isPastOpen)}
-                            className="text-xs font-semibold tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 uppercase transition-colors duration-200 flex items-center gap-2"
-                        >
-                            <span>Past Experience</span>
-                            <ChevronDown className={`transition-transform duration-300 ${isPastOpen ? 'rotate-180' : ''}`} size={14} />
-                        </button>
-
-                        {isPastOpen && (
-                            <div className="space-y-10 mt-8 pt-8 border-t border-gray-100 dark:border-gray-800">
-                                {past.map((e, i) => (
-                                    <ExperienceItem
-                                        key={i}
-                                        title={e.role}
-                                        date={e.period.replace(' - ', ' – ')}
-                                        org={e.company}
-                                        description={e.summary}
-                                    />
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                )}
+            <div className="mt-10">
+                <button
+                    onClick={onFullResumeClick}
+                    className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200"
+                >
+                    All Experience <ArrowRight size={12} className="ml-1.5" />
+                </button>
             </div>
         </section>
     );

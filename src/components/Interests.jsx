@@ -91,7 +91,7 @@ const InterestWithMedia = ({ label, media, mobileAlignment = "center" }) => {
 
 const Interests = () => {
     return (
-        <section className="mb-20">
+        <section id="interests" className="mb-20">
             <SectionTitle title="Beyond Code" className="mb-6" />
             <div className="mb-8">
                 <div className="flex flex-wrap gap-2 text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">

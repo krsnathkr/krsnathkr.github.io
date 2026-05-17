@@ -1,5 +1,14 @@
 [
-    { "text": "Started summer internship at PubGen.ai as a Data Engineer", "url": "https://pubgen.ai" },
-    { "text": "Research paper accepted at ACL 2026", "url": null },
-    { "text": "Currently writing a research with Dr. Ziping", "url": null }
+    {
+        "text": "Started summer internship at PubGen.ai as a Data Engineer",
+        "url": "https://pubgen.ai"
+    },
+    {
+        "text": "Research paper accepted at ACL 2026",
+        "url": null
+    },
+    {
+        "text": "Currently doing a research with Dr. Ziping Liu",
+        "url": "https://github.com/krsnathkr/smhgt-thesis"
+    }
 ]

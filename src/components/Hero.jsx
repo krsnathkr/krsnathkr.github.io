@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Eye } from 'lucide-react';
+import { GithubLogo, LinkedinLogo, Envelope, Eye } from '@phosphor-icons/react';
 import profilePhoto from '../assets/profilephoto.png';
 
 const Hero = () => {
@@ -34,15 +34,15 @@ const Hero = () => {
             <div className="flex gap-5 text-gray-400 dark:text-gray-500">
                 <a href="https://github.com/krsnathkr/" target="_blank" rel="noopener noreferrer"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
-                    <Github size={24} />
+                    <GithubLogo size={24} />
                 </a>
                 <a href="https://www.linkedin.com/in/krsnathkr/" target="_blank" rel="noopener noreferrer"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
-                    <Linkedin size={24} />
+                    <LinkedinLogo size={24} />
                 </a>
                 <a href="mailto:krsnathkr@gmail.com"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
-                    <Mail size={24} />
+                    <Envelope size={24} />
                 </a>
             </div>
 

@@ -31,7 +31,7 @@ const PhotoGallery = () => {
 
     return (
         <>
-            <section className="mb-20">
+            <section id="gallery" className="mb-20">
                 <SectionTitle
                     title="Moments & Milestones"
                     subtitle="A glimpse into my world. (Psst... click on a photo!)"

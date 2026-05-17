@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import projectsData from '../data/projects.json';
 
@@ -36,7 +36,7 @@ const Projects = ({ onArchiveClick }) => {
                     onClick={onArchiveClick}
                     className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200"
                 >
-                    View Full Project Archive <ArrowRight size={12} className="ml-1.5" />
+                    All Projects <ArrowRight size={12} className="ml-1.5" />
                 </button>
             </div>
         </section>

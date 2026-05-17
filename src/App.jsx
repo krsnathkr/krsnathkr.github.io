@@ -13,12 +13,15 @@ import Interests from './components/Interests';
 import PhotoGallery from './components/PhotoGallery';
 import Footer from './components/Footer';
 import Archive from './components/Archive';
+import ExperienceArchive from './components/ExperienceArchive';
 import ClickSpark from './components/ClickSpark';
 import Contact from './components/Contact';
 import Ticker from './components/Ticker';
+import SideNav from './components/SideNav';
 
 function AppContent() {
   const [showArchive, setShowArchive] = useState(false);
+  const [showExperienceArchive, setShowExperienceArchive] = useState(false);
   const { isDark } = useTheme();
   const { trigger } = useWebHaptics();
 
@@ -42,16 +45,20 @@ function AppContent() {
       <div className="bg-white dark:bg-[#0a0a0a] text-gray-900 dark:text-gray-100 antialiased selection:bg-gray-900 selection:text-white dark:selection:bg-white dark:selection:text-gray-900 min-h-screen transition-colors duration-0">
         <Ticker />
         <ThemeToggle />
+        <SideNav visible={!showArchive && !showExperienceArchive} />
         <div className="max-w-2xl mx-auto px-6 py-20 md:py-28">
 
           {/* Main Home View */}
-          <div id="home-view" className={`${showArchive ? 'hidden' : 'block'}`}>
+          <div id="home-view" className={`${showArchive || showExperienceArchive ? 'hidden' : 'block'}`}>
             <Hero />
 
             <div className="content-scaled">
               <div className="border-b border-gray-100 dark:border-gray-800 mb-20" />
 
-              <Experience />
+              <Experience onFullResumeClick={() => {
+                setShowExperienceArchive(true);
+                window.scrollTo(0, 0);
+              }} />
 
               <Research />
 
@@ -81,6 +88,16 @@ function AppContent() {
             <div id="archive-view">
               <Archive onBack={() => {
                 setShowArchive(false);
+                window.scrollTo(0, 0);
+              }} />
+            </div>
+          )}
+
+          {/* Experience Archive View */}
+          {showExperienceArchive && (
+            <div id="experience-archive-view">
+              <ExperienceArchive onBack={() => {
+                setShowExperienceArchive(false);
                 window.scrollTo(0, 0);
               }} />
             </div>

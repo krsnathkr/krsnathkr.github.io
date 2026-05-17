@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import researchData from '../data/research.json';
 

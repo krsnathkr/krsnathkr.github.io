@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon } from '@phosphor-icons/react';
 import { useTheme } from './ThemeContext';
 import { useWebHaptics } from 'web-haptics/react';
 
@@ -25,9 +25,9 @@ const ThemeToggle = () => {
             title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
             {isDark ? (
-                <Sun size={18} strokeWidth={1.8} />
+                <Sun size={18} weight="regular" />
             ) : (
-                <Moon size={18} strokeWidth={1.8} />
+                <Moon size={18} weight="regular" />
             )}
         </button>
     );

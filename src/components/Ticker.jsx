@@ -36,6 +36,7 @@ const Ticker = () => {
     const velocity = useRef(BASE_SPEED);
     const isHovering = useRef(false);
     const isDragging = useRef(false);
+    const didDrag = useRef(false);
     const lastX = useRef(0);
     const recentDeltas = useRef([]); // [{dx, t}] window for throw velocity
     const rafId = useRef(null);
@@ -82,12 +83,14 @@ const Ticker = () => {
 
     const onPointerDown = (e) => {
         if (e.button !== 0) return;
+        // Don't start drag when clicking on a link — let the browser handle navigation
+        if (e.target.closest('a')) return;
         isDragging.current = true;
+        didDrag.current = false;
         velocity.current = 0;
         lastX.current = e.clientX;
         recentDeltas.current = [];
         trackRef.current?.setPointerCapture(e.pointerId);
-        e.preventDefault();
     };
 
     const onPointerMove = (e) => {
@@ -95,6 +98,7 @@ const Ticker = () => {
         const now = performance.now();
         const dx = e.clientX - lastX.current;
         lastX.current = e.clientX;
+        if (Math.abs(dx) > 2) didDrag.current = true;
 
         recentDeltas.current.push({ dx, t: now });
         // Keep only the last 100 ms for throw velocity sampling
@@ -138,6 +142,7 @@ const Ticker = () => {
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
                 onPointerCancel={onPointerUp}
+                onClick={(e) => { if (didDrag.current) e.preventDefault(); }}
             >
                 {Array.from({ length: copies }, (_, copy) => (
                     <span

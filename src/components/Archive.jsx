@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowSquareOut } from '@phosphor-icons/react';
 import projectsData from '../data/projects.json';
 
 const Archive = ({ onBack }) => {
@@ -71,7 +71,7 @@ const Archive = ({ onBack }) => {
                                 <td className="py-4 pl-4 text-right">
                                     <a href={project.link} target="_blank" rel="noopener noreferrer"
                                         className="text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white hover:underline inline-block">
-                                        <ExternalLink size={14} />
+                                        <ArrowSquareOut size={14} />
                                     </a>
                                 </td>
                             </tr>
