@@ -46,7 +46,7 @@
             "Used stratified cross validation, confusion matrices, and ROC curves to measure accuracy, precision, recall, F1, and ROC AUC.",
             "Demonstrated that RoBERTa achieved top performance (accuracy 0.80112, AUC 0.93237) through systematic cross-validation and in-depth analysis."
         ],
-        "featured": true
+        "featured": false
     },
     {
         "role": "Resident Assistant",

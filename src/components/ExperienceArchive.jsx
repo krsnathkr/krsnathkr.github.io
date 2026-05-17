@@ -37,12 +37,9 @@ const ExperienceArchive = ({ onBack }) => {
                 Back to Portfolio
             </button>
 
-            <h1 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight text-gray-900 dark:text-gray-100">
+            <h1 className="text-4xl md:text-5xl font-semibold mb-12 tracking-tight text-gray-900 dark:text-gray-100">
                 Work Experience
             </h1>
-            <p className="text-gray-500 dark:text-gray-400 text-lg mb-12 font-light">
-                Every role, every lesson.
-            </p>
 
             <div>
                 {featured.map((entry, i) => <Entry key={i} entry={entry} />)}

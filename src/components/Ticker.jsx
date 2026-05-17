@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import highlights from '../data/highlights.json';
 
-const BASE_SPEED = -1.2;      // px/frame auto-scroll leftward
+const BASE_SPEED = -0.5;      // px/frame auto-scroll leftward
 const FRICTION = 0.96;        // velocity decay per frame (coasting)
 const HOVER_FRICTION = 0.88;  // stronger decay when hovering to stop
 
