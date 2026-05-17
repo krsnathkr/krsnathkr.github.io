@@ -228,3 +228,14 @@ body.ibm-plex-sans-theme * {
 .animate-marquee {
     animation: marquee var(--marquee-duration, 24s) linear infinite;
 }
+
+.animate-marquee:hover,
+.animate-marquee:focus-within {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+        animation: none;
+    }
+}
