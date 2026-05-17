@@ -11,8 +11,7 @@
         "desc": "Real-time chess assistant analyzing live streams from Meta Ray-Ban glasses.",
         "link": "https://github.com/krsnathkr/cheat-in-chess",
         "color": "#FF4D4D",
-        "archived": true,
-        "featured": true
+        "archived": true
     },
     {
         "id": 3,
@@ -26,8 +25,7 @@
         "desc": "Agentic RAG pipeline combining real-time web search and document Q&A.",
         "link": "https://github.com/krsnathkr/rag-mcp-agenticAI",
         "color": "#FFD600",
-        "archived": true,
-        "featured": true
+        "archived": true
     },
     {
         "id": 6,
@@ -83,8 +81,7 @@
         "desc": "Full-stack booking system for 150+ students. Reduced congestion by 70%.",
         "link": "https://github.com/anuragbhattarai31/EsportsWeb",
         "color": "#00D4FF",
-        "archived": true,
-        "featured": true
+        "archived": true
     },
     {
         "id": 5,
@@ -179,8 +176,8 @@
         "archived": true
     },
     {
-        "id": 15,
-        "title": "SMHGT",
+        "id": 18,
+        "title": "Stock Market Heterogeneous Graph Transformer",
         "cat": "Research",
         "tags": [
             "Graph Neural Net",
@@ -223,7 +220,7 @@
         "archived": true
     },
     {
-        "id": 18,
+        "id": 15,
         "title": "Tick",
         "cat": "Web Dev",
         "tags": [

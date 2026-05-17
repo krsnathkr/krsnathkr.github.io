@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "title": "Math Department Wall",
+        "period": "Honored",
+        "desc": "My name hangs on the wall of the SEMO Math Department (woohoo! check out the photos below)"
+    },
+    {
+        "id": 2,
+        "title": "International Excellence Award",
+        "period": "2021 – 2025",
+        "desc": "50% scholarship at SEMO · Awarded 4 times in 4 years"
+    },
+    {
+        "id": 3,
+        "title": "Dean's List & President's List",
+        "period": "2022 – 2024",
+        "desc": "Dean's List (6 semesters) · President's List (5 semesters)"
+    },
+    {
+        "id": 4,
+        "title": "Graphic Designer",
+        "period": "2022 – 2025",
+        "desc": "International Student Association"
+    },
+    {
+        "id": 5,
+        "title": "First Year Leadership Program",
+        "period": "2022",
+        "desc": ""
+    }
+]
