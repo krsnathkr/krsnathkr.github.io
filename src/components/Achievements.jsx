@@ -16,7 +16,7 @@ const Achievements = () => {
                         <span className="text-sm text-gray-400 dark:text-gray-500 font-mono mt-1 sm:mt-0">Honored</span>
                     </div>
                     <div className="text-sm text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
-                        My name hangs on the wall of the SEMO Math Department <span className="italic text-gray-400 dark:text-gray-500">(woohoo! check out the photos above)</span>
+                        My name hangs on the wall of the SEMO Math Department <span className="italic text-gray-400 dark:text-gray-500">(woohoo! check out the photos below)</span>
                     </div>
                 </div>
 
