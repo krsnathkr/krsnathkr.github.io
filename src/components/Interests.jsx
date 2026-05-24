@@ -40,7 +40,7 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobi
             ref={itemRef}
             type="button"
             aria-expanded={isOpen}
-            className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400`}
+            className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline-wavy-animated wavy-clip-content transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400`}
             onMouseEnter={() => {
                 // Ignore mouse enter if we recently processed a touch event (fixes iOS double-firing)
                 if (touchTimeoutRef.current) return;
@@ -105,7 +105,7 @@ const Interests = () => {
                         href="https://www.nasa.gov/images/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-block cursor-pointer underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 underline-offset-2 transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
+                        className="inline-block cursor-pointer underline-wavy-animated wavy-clip-content transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
                     >
                         Space & Universe
                     </a>

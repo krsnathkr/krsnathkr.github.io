@@ -12,14 +12,14 @@ const Contact = () => {
                     href="https://www.linkedin.com/in/krsnathkr/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 hover:text-gray-900 dark:hover:text-gray-100 underline-offset-2 transition-all duration-200"
+                    className="underline-wavy-animated hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
                 >
                     LinkedIn
                 </a>
                 {' '}or shoot an{' '}
                 <a
                     href="mailto:krsnathkr@gmail.com"
-                    className="underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 hover:text-gray-900 dark:hover:text-gray-100 underline-offset-2 transition-all duration-200"
+                    className="underline-wavy-animated hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
                 >
                     email
                 </a>
@@ -30,7 +30,8 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="contact-view-cv"
-                className="inline-flex items-center gap-1.5 mt-3 text-sm text-gray-500 dark:text-gray-400 font-light underline decoration-wavy decoration-gray-300 dark:decoration-gray-600 hover:decoration-gray-900 dark:hover:decoration-gray-100 hover:text-gray-900 dark:hover:text-gray-100 underline-offset-2 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 mt-3 text-sm text-gray-500 dark:text-gray-400 font-light underline-wavy-animated hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
+                style={{ paddingBottom: '1px' }}
             >
                 <Eye size={14} />
                 View my CV [ again ;) ]
