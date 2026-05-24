@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUpRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import projectsData from '../data/projects.json';
 
@@ -12,21 +12,26 @@ const Projects = ({ onArchiveClick }) => {
 
             <div className="space-y-10">
                 {featuredProjects.map(project => (
-                    <div key={project.id} className="group relative pl-6 border-l border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-100 transition-colors duration-300">
-                        <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                            <a href={project.link} target="_blank" rel="noopener noreferrer"
-                                className="hover:underline decoration-1 underline-offset-4">{project.title}</a>
-                        </h3>
-                        <div className="flex flex-wrap gap-1.5 mb-2">
-                            {project.tags.map(tag => (
-                                <span key={tag} className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 rounded">
-                                    {tag}
-                                </span>
-                            ))}
+                    <div key={project.id} className="group relative">
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={project.title} />
+                        <div className="flex items-start justify-between gap-4">
+                            <div>
+                                <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                                    <span className="group-hover:underline decoration-1 underline-offset-4">{project.title}</span>
+                                </h3>
+                                <div className="flex flex-wrap gap-1.5 mb-2">
+                                    {project.tags.map(tag => (
+                                        <span key={tag} className="text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 rounded">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
+                                    {project.desc}
+                                </p>
+                            </div>
+                            <ArrowUpRight className="text-gray-300 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors mt-1 shrink-0" size={16} />
                         </div>
-                        <p className="text-gray-600 dark:text-gray-400 font-light text-sm leading-relaxed">
-                            {project.desc}
-                        </p>
                     </div>
                 ))}
             </div>

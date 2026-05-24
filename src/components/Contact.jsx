@@ -26,7 +26,7 @@ const Contact = () => {
                 .
             </p>
             <a
-                href="https://drive.google.com/file/d/1rm9oKMQoc6rR0Uo73gnRGb55o90ZkbdP/view?usp=sharing"
+                href="https://drive.google.com/file/d/1LFj0m0om7W7IzUUA6dcyLbfQaTqRVD8y/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="contact-view-cv"

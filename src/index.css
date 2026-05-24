@@ -192,6 +192,34 @@ body.ibm-plex-sans-theme * {
     transform: scale(0.97);
 }
 
+/* ===== Research ACL Sticker ===== */
+.acl-sticker-target {
+    min-height: 148px;
+}
+
+.acl-sticker-paste {
+    position: absolute;
+    right: 120px;
+    top: 30px;
+    z-index: 20;
+    width: 120px;
+    pointer-events: auto;
+}
+
+@media (max-width: 639px) {
+    .acl-sticker-target {
+        min-height: 148px;
+        padding-bottom: 0;
+    }
+
+    .acl-sticker-paste {
+        right: 8px;
+        top: 20px;
+        bottom: auto;
+        width: 90px;
+    }
+}
+
 /* ===== View Transition — Radial Dark Mode Animation ===== */
 ::view-transition-old(root),
 ::view-transition-new(root) {
