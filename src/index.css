@@ -253,20 +253,15 @@ body.ibm-plex-sans-theme * {
     to   { background-position-x: 8px; }
 }
 
+/* Base: padding-box clipping — correct for inline <a> elements with no horizontal padding */
 .underline-wavy-animated {
     text-decoration: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 3 Q2 0 4 3 Q6 6 8 3' fill='none' stroke='%23d1d5db' stroke-width='1.5'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
     background-position: left bottom;
     background-size: 8px 6px;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
     animation: wavy-scroll 0.8s linear infinite;
-}
-
-/* Clip wave to content box — use on elements with horizontal padding wider than the text */
-.underline-wavy-animated.wavy-clip-content {
-    background-clip: content-box;
-    background-origin: content-box;
 }
 
 .dark .underline-wavy-animated {
@@ -279,4 +274,10 @@ body.ibm-plex-sans-theme * {
 
 .dark .underline-wavy-animated:hover {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 3 Q2 0 4 3 Q6 6 8 3' fill='none' stroke='%23f3f4f6' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+/* Keep the wave tied to the text content box on padded inline elements. */
+.underline-wavy-animated.wavy-clip-content {
+    background-clip: content-box;
+    background-origin: content-box;
 }
