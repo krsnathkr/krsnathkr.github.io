@@ -255,10 +255,11 @@ body.ibm-plex-sans-theme * {
 
 /* Base: padding-box clipping — correct for inline <a> elements with no horizontal padding */
 .underline-wavy-animated {
+    --wavy-underline-y-offset: 0px;
     text-decoration: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 3 Q2 0 4 3 Q6 6 8 3' fill='none' stroke='%23d1d5db' stroke-width='1.5'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
-    background-position: left bottom;
+    background-position: left calc(100% + var(--wavy-underline-y-offset));
     background-size: 8px 6px;
     padding-bottom: 2px;
     animation: wavy-scroll 0.8s linear infinite;
@@ -280,4 +281,12 @@ body.ibm-plex-sans-theme * {
 .underline-wavy-animated.wavy-clip-content {
     background-clip: content-box;
     background-origin: content-box;
+}
+
+@supports (-webkit-touch-callout: none) {
+    @media (hover: none) and (pointer: coarse) and (max-width: 767px) {
+        .underline-wavy-animated {
+            --wavy-underline-y-offset: 1px;
+        }
+    }
 }
