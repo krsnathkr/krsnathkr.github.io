@@ -48,7 +48,7 @@ const Hero = () => {
 
             {/* View CV Button */}
             <a
-                href="https://drive.google.com/file/d/1LFj0m0om7W7IzUUA6dcyLbfQaTqRVD8y/view?usp=sharing"
+                href="https://drive.google.com/file/d/1J3MN3buyW_y5cFZQrelqnGPH7AXjGCOB/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="view-cv-btn"

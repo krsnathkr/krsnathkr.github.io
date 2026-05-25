@@ -2,8 +2,8 @@ import React from 'react';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import researchData from '../data/research.json';
-import aclStickerLight from '../../ACL Sticker Light mode.png';
-import aclStickerDark from '../../ACL Sticker Dark mode.png';
+import aclLightSticker from '../assets/acl-light-sticker.png';
+import aclDarkSticker from '../assets/acl-dark-sticker.png';
 import { useTheme } from './ThemeContext';
 import StickerPeel from './StickerPeel';
 
@@ -24,13 +24,13 @@ const Research = () => {
                         {item.id === ACL_STICKER_RESEARCH_ID && (
                             <div className="acl-sticker-paste" aria-label="ACL sticker">
                                 <StickerPeel
-                                    imageSrc={isDark ? aclStickerDark : aclStickerLight}
+                                    imageSrc={isDark ? aclDarkSticker : aclLightSticker}
                                     width={120}
                                     rotate={-15}
                                     peelBackHoverPct={22}
                                     peelBackActivePct={36}
                                     shadowIntensity={0.5}
-                                    lightingIntensity={0.12}
+                                    lightingIntensity={0.05}
                                     draggable={false}
                                 />
                             </div>
