@@ -19,18 +19,45 @@ import Contact from './components/Contact';
 import Ticker from './components/Ticker';
 import SideNav from './components/SideNav';
 
+const HAPTIC_TARGET_SELECTOR = [
+  'a',
+  'button',
+  '[role="button"]',
+  '[data-haptic]',
+  'summary',
+  'input:not([type="hidden"])',
+  'select',
+  'textarea',
+  '[tabindex]:not([tabindex="-1"])',
+  '[class*="cursor-pointer"]',
+].join(', ');
+
+const isDisabledInteraction = (element) => {
+  return Boolean(
+    element.closest('[disabled], [aria-disabled="true"], [data-haptic="off"]')
+  );
+};
+
 function AppContent() {
   const [showArchive, setShowArchive] = useState(false);
   const [showExperienceArchive, setShowExperienceArchive] = useState(false);
   const { isDark } = useTheme();
-  const { trigger } = useWebHaptics();
+  const { trigger } = useWebHaptics({
+    debug: import.meta.env.DEV,
+  });
 
   useEffect(() => {
     const handleClick = (e) => {
-      // Find out if what we clicked was a link, button, or inside one
-      const target = e.target.closest('a, button, [role="button"]');
-      if (target) {
-        trigger("nudge");
+      if (!e.isTrusted) return;
+      if (e.defaultPrevented || !(e.target instanceof Element)) return;
+
+      const target = e.target.closest(HAPTIC_TARGET_SELECTOR);
+      if (!target || isDisabledInteraction(target)) return;
+
+      const pattern = target.dataset.haptic || 'nudge';
+      const haptic = trigger(pattern);
+      if (haptic?.catch) {
+        haptic.catch(() => {});
       }
     };
 

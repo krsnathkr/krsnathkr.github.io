@@ -234,8 +234,8 @@ body.ibm-plex-sans-theme * {
 
 /* The NEW snapshot clips in with a circle expanding from the toggle button */
 ::view-transition-new(root) {
-    z-index: 9999;
-    animation: radial-clip-expand 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 9999;  
+    animation: radial-clip-expand 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards; 
 }
 
 @keyframes radial-clip-expand {

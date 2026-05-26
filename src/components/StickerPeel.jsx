@@ -1,8 +1,24 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
+import { useWebHaptics } from 'web-haptics/react';
 
 gsap.registerPlugin(Draggable);
+
+const PEEL_TRANSITION_MS = 450;
+const PEEL_FALL_DELAY_MS = 280;
+const PEEL_RELEASE_TAP_MS = 28;
+const PEEL_BUZZ_DELAY_MS = 34;
+const PEEL_BUZZ_MS = PEEL_FALL_DELAY_MS - PEEL_BUZZ_DELAY_MS;
+const PEEL_SETTLE_DELAY_MS = PEEL_TRANSITION_MS - PEEL_RELEASE_TAP_MS - PEEL_BUZZ_DELAY_MS - PEEL_BUZZ_MS;
+const PEEL_BUZZ_PATTERN = {
+    pattern: [
+        { duration: PEEL_RELEASE_TAP_MS, intensity: 1 },
+        { delay: PEEL_BUZZ_DELAY_MS, duration: PEEL_BUZZ_MS, intensity: 0.82 },
+        { delay: PEEL_SETTLE_DELAY_MS, duration: 36, intensity: 0.45 },
+    ],
+    description: 'sticker peel release',
+};
 
 const PEEL_STYLES = `
 .sticker-container:hover .sticker-main,
@@ -53,6 +69,9 @@ const StickerPeel = ({
     const pointLightFlippedRef = useRef(null);
     const draggableInstanceRef = useRef(null);
     const isFallingRef = useRef(false);
+    const { trigger } = useWebHaptics({
+        debug: import.meta.env.DEV,
+    });
 
     const defaultPadding = 12;
 
@@ -187,6 +206,10 @@ const StickerPeel = ({
         isFallingRef.current = true;
 
         container.classList.add('peeled-off');
+        const haptic = trigger(PEEL_BUZZ_PATTERN);
+        if (haptic?.catch) {
+            haptic.catch(() => {});
+        }
 
         const rect = target.getBoundingClientRect();
         const fallDistance = window.innerHeight - rect.top + rect.height + 100;
@@ -250,6 +273,7 @@ const StickerPeel = ({
                 className="sticker-container relative select-none touch-none sm:touch-auto cursor-pointer"
                 ref={containerRef}
                 onClick={handlePeelOffAndFall}
+                data-haptic="off"
                 style={{
                     WebkitUserSelect: 'none',
                     userSelect: 'none',

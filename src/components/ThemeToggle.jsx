@@ -1,20 +1,18 @@
 import React from 'react';
 import { Sun, Moon } from '@phosphor-icons/react';
 import { useTheme } from './ThemeContext';
-import { useWebHaptics } from 'web-haptics/react';
 
 const ThemeToggle = () => {
     const { isDark, toggleTheme } = useTheme();
-    const { trigger } = useWebHaptics();
 
     const handleClick = (e) => {
-        trigger("success");
         toggleTheme(e);
     };
 
     return (
         <button
             onClick={handleClick}
+            data-haptic="success"
             className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full
                        bg-gray-100 dark:bg-gray-800
                        text-gray-600 dark:text-gray-300

@@ -13,6 +13,8 @@ import img8 from '../assets/photos/exported_E1076F47-A519-42D6-A7FD-5417535F5856
 
 const row1 = [img1, img2, img3, img4];
 const row2 = [img5, img6, img7, img8];
+const MotionDiv = motion.div;
+const MotionImg = motion.img;
 
 const PhotoGallery = () => {
     const containerRef = useRef(null);
@@ -68,7 +70,7 @@ const PhotoGallery = () => {
                     />
 
                     {/* Row 1 */}
-                    <motion.div
+                    <MotionDiv
                         style={{ x: x1 }}
                         className="flex gap-2 mb-2"
                     >
@@ -76,6 +78,7 @@ const PhotoGallery = () => {
                             <div
                                 key={i}
                                 className="flex-shrink-0 h-40 md:h-52 cursor-pointer"
+                                data-haptic="success"
                                 onClick={() => setSelectedPhoto(src)}
                             >
                                 <img
@@ -87,10 +90,10 @@ const PhotoGallery = () => {
                                 />
                             </div>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Row 2 */}
-                    <motion.div
+                    <MotionDiv
                         style={{ x: x2 }}
                         className="flex gap-2"
                     >
@@ -98,6 +101,7 @@ const PhotoGallery = () => {
                             <div
                                 key={i}
                                 className="flex-shrink-0 h-40 md:h-52 cursor-pointer"
+                                data-haptic="success"
                                 onClick={() => setSelectedPhoto(src)}
                             >
                                 <img
@@ -109,19 +113,20 @@ const PhotoGallery = () => {
                                 />
                             </div>
                         ))}
-                    </motion.div>
+                    </MotionDiv>
                 </div>
             </section>
 
             {/* Lightbox */}
             <AnimatePresence>
                 {selectedPhoto && (
-                    <motion.div
+                    <MotionDiv
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
                         onClick={closeLightbox}
+                        data-haptic="nudge"
                         style={{
                             position: 'fixed',
                             inset: 0,
@@ -134,7 +139,7 @@ const PhotoGallery = () => {
                             padding: '2rem',
                         }}
                     >
-                        <motion.img
+                        <MotionImg
                             src={selectedPhoto}
                             alt=""
                             initial={{ scale: 0.9, opacity: 0 }}
@@ -164,10 +169,11 @@ const PhotoGallery = () => {
                                 lineHeight: 1,
                             }}
                             onClick={closeLightbox}
+                            data-haptic="nudge"
                         >
                             ✕
                         </span>
-                    </motion.div>
+                    </MotionDiv>
                 )}
             </AnimatePresence>
         </>
