@@ -4,7 +4,7 @@
         "label": "Working on it, right now!",
         "title": "Stock Market Heterogeneous Graph Transformer",
         "desc": "Heterogeneous graph transformer for 21-day S&P 500 return prediction. +82% IC over Ridge baseline.",
-        "link": "https://github.com/krsnathkr/smhgt-thesis",
+        "link": null,
         "contributors": [
             {
                 "role": "Advisor",

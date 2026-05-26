@@ -12,12 +12,14 @@ const Projects = ({ onArchiveClick }) => {
 
             <div className="space-y-10">
                 {featuredProjects.map(project => (
-                    <div key={project.id} className="group relative">
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={project.title} />
+                    <div key={project.id} className={`relative ${project.link ? 'group' : ''}`}>
+                        {project.link && (
+                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={project.title} />
+                        )}
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                                    <span className="inline-block group-hover-underline-wavy-animated">{project.title}</span>
+                                    <span className={project.link ? 'inline-block group-hover-underline-wavy-animated' : 'inline-block'}>{project.title}</span>
                                 </h3>
                                 <div className="flex flex-wrap gap-1.5 mb-2">
                                     {project.tags.map(tag => (
@@ -30,7 +32,9 @@ const Projects = ({ onArchiveClick }) => {
                                     {project.desc}
                                 </p>
                             </div>
-                            <ArrowUpRight className="text-gray-300 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors mt-1 shrink-0" size={16} />
+                            {project.link && (
+                                <ArrowUpRight className="text-gray-300 dark:text-gray-600 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors mt-1 shrink-0" size={16} />
+                            )}
                         </div>
                     </div>
                 ))}

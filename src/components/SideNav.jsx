@@ -14,33 +14,45 @@ const NAV_ITEMS = [
     { id: 'contact', label: 'Contact' },
 ];
 
+const getActiveSection = () => {
+    if (typeof window === 'undefined') return 'home';
+
+    const triggerLine = 120;
+    let activeSection = 'home';
+
+    for (const { id } of NAV_ITEMS) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= triggerLine) {
+            activeSection = id;
+        }
+
+        if (rect.top <= triggerLine && rect.bottom > triggerLine) {
+            return id;
+        }
+    }
+
+    return activeSection;
+};
+
 const SideNav = ({ visible = true }) => {
-    const [activeSection, setActiveSection] = useState('home');
+    const [activeSection, setActiveSection] = useState(getActiveSection);
 
     const handleScroll = useCallback(() => {
-        const scrollPos = window.scrollY + window.innerHeight / 3;
-
-        // Walk sections bottom-to-top so the *last* one whose top is above
-        // the trigger line wins (gives us the "current" section).
-        for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
-            const el = document.getElementById(NAV_ITEMS[i].id);
-            if (el && el.offsetTop <= scrollPos) {
-                setActiveSection(NAV_ITEMS[i].id);
-                return;
-            }
-        }
-        setActiveSection('home');
+        setActiveSection(getActiveSection());
     }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // set initial
         return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]);
 
     const scrollTo = (id) => {
         const el = document.getElementById(id);
         if (el) {
+            setActiveSection(id);
             const y = el.getBoundingClientRect().top + window.scrollY - 80;
             window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
         }

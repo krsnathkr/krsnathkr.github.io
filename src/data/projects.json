@@ -185,7 +185,7 @@
             "Finance"
         ],
         "desc": "Heterogeneous graph transformer for 21-day S&P 500 return prediction. +82% IC over Ridge baseline. Master's thesis.",
-        "link": "https://github.com/krsnathkr/smhgt-thesis",
+        "link": null,
         "color": "#7B1FA2",
         "archived": true,
         "featured": true
