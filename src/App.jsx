@@ -18,7 +18,7 @@ import ClickSpark from './components/ClickSpark';
 import Contact from './components/Contact';
 import Ticker from './components/Ticker';
 import SideNav from './components/SideNav';
-import { shouldDebugHaptics } from './utils/haptics';
+import { shouldUseHapticAudioFallback } from './utils/haptics';
 
 const HAPTIC_TARGET_SELECTOR = [
   'a',
@@ -44,7 +44,7 @@ function AppContent() {
   const [showExperienceArchive, setShowExperienceArchive] = useState(false);
   const { isDark } = useTheme();
   const { trigger } = useWebHaptics({
-    debug: shouldDebugHaptics(),
+    debug: shouldUseHapticAudioFallback(),
   });
 
   useEffect(() => {

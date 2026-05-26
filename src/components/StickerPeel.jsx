@@ -2,7 +2,7 @@ import { useRef, useEffect, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { useWebHaptics } from 'web-haptics/react';
-import { shouldDebugHaptics } from '../utils/haptics';
+import { shouldUseHapticAudioFallback } from '../utils/haptics';
 
 gsap.registerPlugin(Draggable);
 
@@ -71,7 +71,7 @@ const StickerPeel = ({
     const draggableInstanceRef = useRef(null);
     const isFallingRef = useRef(false);
     const { trigger } = useWebHaptics({
-        debug: shouldDebugHaptics(),
+        debug: shouldUseHapticAudioFallback(),
     });
 
     const defaultPadding = 12;
