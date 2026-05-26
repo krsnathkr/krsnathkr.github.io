@@ -14,7 +14,7 @@ const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
                 target="_blank"
                 rel="noopener noreferrer"
                 tabIndex={ariaHidden ? -1 : 0}
-                className="text-sm font-light text-gray-600 dark:text-gray-400 hover:underline"
+                className="text-sm font-light text-gray-600 dark:text-gray-400 hover-underline-wavy-animated hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200"
             >
                 {item.text}
             </a>

@@ -153,7 +153,7 @@ const PhotoGallery = () => {
                                 borderRadius: '8px',
                                 boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
                             }}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={closeLightbox}
                         />
 
                         {/* Close hint */}

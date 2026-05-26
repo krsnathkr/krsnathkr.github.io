@@ -283,9 +283,38 @@ body.ibm-plex-sans-theme * {
     background-origin: content-box;
 }
 
+.hover-underline-wavy-animated,
+.group-hover-underline-wavy-animated {
+    --wavy-underline-y-offset: 0px;
+    text-decoration: none;
+    background-repeat: repeat-x;
+    background-position: left calc(100% + var(--wavy-underline-y-offset));
+    background-size: 8px 6px;
+    padding-bottom: 2px;
+}
+
+.hover-underline-wavy-animated:hover,
+.group:hover .group-hover-underline-wavy-animated {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 3 Q2 0 4 3 Q6 6 8 3' fill='none' stroke='%23111827' stroke-width='1.5'/%3E%3C/svg%3E");
+    animation: wavy-scroll 0.8s linear infinite;
+}
+
+.dark .hover-underline-wavy-animated:hover,
+.dark .group:hover .group-hover-underline-wavy-animated {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6'%3E%3Cpath d='M0 3 Q2 0 4 3 Q6 6 8 3' fill='none' stroke='%23f3f4f6' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+
+.hover-underline-wavy-animated.wavy-clip-content,
+.group-hover-underline-wavy-animated.wavy-clip-content {
+    background-clip: content-box;
+    background-origin: content-box;
+}
+
 @supports (-webkit-touch-callout: none) {
     @media (hover: none) and (pointer: coarse) and (max-width: 767px) {
-        .underline-wavy-animated {
+        .underline-wavy-animated,
+        .hover-underline-wavy-animated,
+        .group-hover-underline-wavy-animated {
             --wavy-underline-y-offset: 1px;
         }
     }

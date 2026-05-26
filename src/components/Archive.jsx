@@ -70,7 +70,7 @@ const Archive = ({ onBack }) => {
                                 <td className="py-4 px-4 hidden md:table-cell font-mono text-xs text-gray-500 dark:text-gray-400">{project.builtWith}</td>
                                 <td className="py-4 pl-4 text-right">
                                     <a href={project.link} target="_blank" rel="noopener noreferrer"
-                                        className="text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white hover:underline inline-block">
+                                        className="text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white hover-underline-wavy-animated inline-block">
                                         <ArrowSquareOut size={14} />
                                     </a>
                                 </td>

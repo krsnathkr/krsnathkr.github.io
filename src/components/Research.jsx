@@ -40,7 +40,7 @@ const Research = () => {
                             <div>
                                 <span className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wider">{item.label}</span>
                                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mt-1">
-                                    <span className="group-hover:underline decoration-1 underline-offset-4">
+                                    <span className="inline-block group-hover-underline-wavy-animated">
                                         {item.title}
                                     </span>
                                 </h3>

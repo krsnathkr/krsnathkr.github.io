@@ -17,7 +17,7 @@ const Projects = ({ onArchiveClick }) => {
                         <div className="flex items-start justify-between gap-4">
                             <div>
                                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                                    <span className="group-hover:underline decoration-1 underline-offset-4">{project.title}</span>
+                                    <span className="inline-block group-hover-underline-wavy-animated">{project.title}</span>
                                 </h3>
                                 <div className="flex flex-wrap gap-1.5 mb-2">
                                     {project.tags.map(tag => (
