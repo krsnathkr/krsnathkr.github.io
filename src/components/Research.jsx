@@ -42,7 +42,7 @@ const Research = () => {
                             <div>
                                 <span className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-wider">{item.label}</span>
                                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mt-1">
-                                    <span className={item.link ? 'inline-block group-hover-underline-wavy-animated' : 'inline-block'}>
+                                    <span className={item.link ? 'inline-block leading-snug group-hover-underline-wavy-animated' : 'inline-block'}>
                                         {item.title}
                                     </span>
                                 </h3>
