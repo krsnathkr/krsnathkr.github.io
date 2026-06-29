@@ -18,9 +18,10 @@ const MusicPlayer = () => {
     const [notes, setNotes] = useState([]);
     const hideTimeout = useRef(null);
 
-    // Auto-play on first user interaction (click, scroll, keydown, touchstart).
-    // Browsers block autoplay until the user has interacted with the page,
-    // so we listen for the first gesture and start playback then.
+    // Auto-play on first user interaction.
+    // Browsers block autoplay until a "user activation" gesture occurs.
+    // NOTE: 'scroll' does NOT count as user activation in any major browser,
+    // so we rely on click / key / touch / pointer events instead.
     useEffect(() => {
         const startPlayback = () => {
             if (autoplayTriggered.current) return;
@@ -28,17 +29,37 @@ const MusicPlayer = () => {
 
             const audio = audioRef.current;
             if (!audio) return;
-            audio.volume = volume;
-            audio.play().catch(() => {});
 
-            events.forEach((e) => window.removeEventListener(e, startPlayback));
+            audio.volume = volume;
+
+            // If the audio isn't ready yet, wait for it to load then play
+            const attemptPlay = () => {
+                audio.play().catch((err) => {
+                    // If play was blocked despite a gesture (e.g. very strict browser policy),
+                    // reset the flag so the next interaction can retry.
+                    console.warn('[MusicPlayer] autoplay blocked:', err.message);
+                    autoplayTriggered.current = false;
+                    events.forEach((e) => document.addEventListener(e, startPlayback, { once: false, passive: true }));
+                });
+            };
+
+            if (audio.readyState >= 3) {
+                // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA — ready to play
+                attemptPlay();
+            } else {
+                // Audio not loaded yet; wait for it
+                audio.addEventListener('canplaythrough', attemptPlay, { once: true });
+            }
+
+            events.forEach((e) => document.removeEventListener(e, startPlayback));
         };
 
-        const events = ['click', 'scroll', 'keydown', 'touchstart'];
-        events.forEach((e) => window.addEventListener(e, startPlayback, { once: false, passive: true }));
+        // These events all count as user activation gestures in modern browsers
+        const events = ['click', 'mousedown', 'pointerdown', 'keydown', 'touchstart'];
+        events.forEach((e) => document.addEventListener(e, startPlayback, { once: false, passive: true }));
 
         return () => {
-            events.forEach((e) => window.removeEventListener(e, startPlayback));
+            events.forEach((e) => document.removeEventListener(e, startPlayback));
         };
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
