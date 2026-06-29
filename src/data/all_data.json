@@ -186,7 +186,7 @@
             "type": "Comparative Study",
             "date": "April 2025",
             "desc": "Investigated effectiveness of SVM, Random Forest vs CNN, BILSTM, and ROBERTa. ROBERTa outperformed others.",
-            "link": "https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing"
+            "link": "https://aclanthology.org/2026.acl-srw.38/"
         },
         {
             "title": "From War Machine to Peacemaker: Duality of AI",
@@ -386,7 +386,7 @@
                 "Research"
             ],
             "desc": "Compared the performance of different machine learning models for Yelp review classification.",
-            "link": "https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing",
+            "link": "https://aclanthology.org/2026.acl-srw.38/",
             "color": "#33C3FF",
             "archived": true
         }

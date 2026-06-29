@@ -319,3 +319,8 @@ body.ibm-plex-sans-theme * {
         }
     }
 }
+
+/* Lo-fi music player: spinning CD */
+@keyframes lofi-spin {
+    to { transform: rotate(360deg); }
+}

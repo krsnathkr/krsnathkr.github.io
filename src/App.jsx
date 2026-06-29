@@ -18,6 +18,7 @@ import ClickSpark from './components/ClickSpark';
 import Contact from './components/Contact';
 import Ticker from './components/Ticker';
 import SideNav from './components/SideNav';
+import MusicPlayer from './components/MusicPlayer';
 import { shouldUseHapticAudioFallback } from './utils/haptics';
 
 const HAPTIC_TARGET_SELECTOR = [
@@ -74,6 +75,7 @@ function AppContent() {
         <Ticker />
         <ThemeToggle />
         <SideNav visible={!showArchive && !showExperienceArchive} />
+        <MusicPlayer />
         <div className="max-w-2xl mx-auto px-6 py-20 md:py-28">
 
           {/* Main Home View */}
