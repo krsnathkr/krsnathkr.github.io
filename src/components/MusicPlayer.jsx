@@ -24,17 +24,32 @@ const MusicPlayer = () => {
         if (!audio) return;
         audio.volume = volume;
 
+        const fadeIn = () => {
+            audio.volume = 0;
+            const target = volume;
+            const duration = 4000; // ms
+            const step = 50;
+            const increment = target / (duration / step);
+            const timer = setInterval(() => {
+                const next = Math.min(audio.volume + increment, target);
+                audio.volume = next;
+                if (next >= target) clearInterval(timer);
+            }, step);
+        };
+
         const attemptPlay = () => {
             if (autoplayTriggered.current) return;
             autoplayTriggered.current = true;
-            audio.play().catch(() => {
+            audio.volume = 0;
+            audio.play().then(fadeIn).catch(() => {
                 // Browser blocked silent autoplay — wait for a user gesture instead.
                 autoplayTriggered.current = false;
                 const events = ['click', 'mousedown', 'pointerdown', 'keydown', 'touchstart'];
                 const onGesture = () => {
                     if (autoplayTriggered.current) return;
                     autoplayTriggered.current = true;
-                    audio.play().catch(() => {});
+                    audio.volume = 0;
+                    audio.play().then(fadeIn).catch(() => {});
                     events.forEach((e) => document.removeEventListener(e, onGesture));
                 };
                 events.forEach((e) => document.addEventListener(e, onGesture, { passive: true }));
