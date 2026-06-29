@@ -1,17 +1,53 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MusicNote, MusicNotes } from '@phosphor-icons/react';
 
 const MotionSpan = motion.span;
+const MotionDiv = motion.div;
 
-// ponytail: disc IS the play/pause button. No transport bar, no volume slider —
-// add when someone actually asks. Track is CC0 (HoliznaCC0), no attribution needed.
+// Track is CC0 (HoliznaCC0), no attribution needed.
 const TRACK = '/lofi.mp3';
+const DEFAULT_VOLUME = 0.35;
 
 const MusicPlayer = () => {
     const audioRef = useRef(null);
+    const autoplayTriggered = useRef(false);
     const [playing, setPlaying] = useState(false);
+    const [volume, setVolume] = useState(DEFAULT_VOLUME);
+    const [showVolume, setShowVolume] = useState(false);
     const [notes, setNotes] = useState([]);
+    const hideTimeout = useRef(null);
+
+    // Auto-play on first user interaction (click, scroll, keydown, touchstart).
+    // Browsers block autoplay until the user has interacted with the page,
+    // so we listen for the first gesture and start playback then.
+    useEffect(() => {
+        const startPlayback = () => {
+            if (autoplayTriggered.current) return;
+            autoplayTriggered.current = true;
+
+            const audio = audioRef.current;
+            if (!audio) return;
+            audio.volume = volume;
+            audio.play().catch(() => {});
+
+            events.forEach((e) => window.removeEventListener(e, startPlayback));
+        };
+
+        const events = ['click', 'scroll', 'keydown', 'touchstart'];
+        events.forEach((e) => window.addEventListener(e, startPlayback, { once: false, passive: true }));
+
+        return () => {
+            events.forEach((e) => window.removeEventListener(e, startPlayback));
+        };
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    // Keep audio volume in sync with slider
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+        }
+    }, [volume]);
 
     // Spawn a music note every ~900ms while playing; each removes itself on exit.
     useEffect(() => {
@@ -21,8 +57,8 @@ const MusicPlayer = () => {
                 ...n,
                 {
                     id: crypto.randomUUID(),
-                    x: (Math.random() - 0.5) * 36,      // horizontal drift
-                    rot: (Math.random() - 0.5) * 40,    // tumble
+                    x: (Math.random() - 0.5) * 36,
+                    rot: (Math.random() - 0.5) * 40,
                     Icon: Math.random() > 0.5 ? MusicNote : MusicNotes,
                 },
             ]);
@@ -30,26 +66,109 @@ const MusicPlayer = () => {
         return () => clearInterval(id);
     }, [playing]);
 
-    const toggle = () => {
+    const toggle = useCallback(() => {
         const audio = audioRef.current;
         if (!audio) return;
         if (playing) {
             audio.pause();
         } else {
-            audio.play().catch(() => {}); // ignore autoplay-policy rejections
+            audio.volume = volume;
+            audio.play().catch(() => {});
         }
-    };
+    }, [playing, volume]);
+
+    const handleVolumeChange = useCallback((e) => {
+        setVolume(parseFloat(e.target.value));
+    }, []);
+
+    const handleMouseEnter = useCallback(() => {
+        clearTimeout(hideTimeout.current);
+        setShowVolume(true);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        hideTimeout.current = setTimeout(() => setShowVolume(false), 300);
+    }, []);
+
+    // Volume percentage for the fill indicator
+    const volumePct = Math.round(volume * 100);
 
     return (
-        <div className="fixed bottom-6 left-6 z-50">
+        <div
+            className="fixed bottom-6 left-6 z-50"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             <audio
                 ref={audioRef}
                 src={TRACK}
                 loop
-                preload="none"
+                preload="auto"
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
             />
+
+            {/* Volume slider — vertical, rises from the disc */}
+            <AnimatePresence>
+                {showVolume && (
+                    <MotionDiv
+                        initial={{ opacity: 0, y: 8, scaleY: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scaleY: 1 }}
+                        exit={{ opacity: 0, y: 8, scaleY: 0.8 }}
+                        transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                        className="absolute left-1/2 -translate-x-1/2 bottom-[52px] flex flex-col items-center"
+                        style={{ originY: 1 }}
+                    >
+                        <div
+                            className="relative flex flex-col items-center gap-2 px-2 py-3
+                                        rounded-full
+                                        bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md
+                                        ring-1 ring-black/8 dark:ring-white/10
+                                        shadow-lg dark:shadow-black/30"
+                        >
+                            {/* Volume percentage label */}
+                            <span
+                                className="text-[9px] font-medium tracking-wider
+                                           text-gray-400 dark:text-gray-500 select-none"
+                                style={{ fontVariantNumeric: 'tabular-nums' }}
+                            >
+                                {volumePct}
+                            </span>
+
+                            {/* Vertical slider track */}
+                            <div className="relative h-20 w-[3px] rounded-full bg-gray-200 dark:bg-white/10">
+                                {/* Fill bar from bottom */}
+                                <div
+                                    className="absolute bottom-0 left-0 w-full rounded-full
+                                               bg-gray-900 dark:bg-gray-100
+                                               transition-all duration-100 ease-out"
+                                    style={{ height: `${volumePct}%` }}
+                                />
+                                {/* Thumb dot */}
+                                <div
+                                    className="absolute left-1/2 -translate-x-1/2 w-[9px] h-[9px]
+                                               rounded-full bg-gray-900 dark:bg-gray-100
+                                               ring-2 ring-white dark:ring-neutral-900
+                                               shadow-sm transition-all duration-100 ease-out"
+                                    style={{ bottom: `calc(${volumePct}% - 4px)` }}
+                                />
+                            </div>
+
+                            {/* Hidden native range input overlaid for interaction */}
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={volume}
+                                onChange={handleVolumeChange}
+                                aria-label="Volume"
+                                className="lofi-volume-vertical"
+                            />
+                        </div>
+                    </MotionDiv>
+                )}
+            </AnimatePresence>
 
             {/* Floating notes — emerge from the disc, drift up, fade out */}
             <div className="pointer-events-none absolute left-1/2 -top-2 -translate-x-1/2">
@@ -76,7 +195,7 @@ const MusicPlayer = () => {
                 </AnimatePresence>
             </div>
 
-            {/* The vinyl record — black in both themes; marker dot + sheen make the spin obvious */}
+            {/* The vinyl record — black in both themes */}
             <button
                 onClick={toggle}
                 data-haptic="nudge"
@@ -89,7 +208,6 @@ const MusicPlayer = () => {
                 style={{
                     animation: playing ? 'lofi-spin 3s linear infinite' : 'none',
                     backgroundImage:
-                        // soft rotating sheen (seamless wrap) + subtle record grooves
                         'conic-gradient(rgba(255,255,255,0.20), rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.20)),' +
                         'repeating-radial-gradient(circle at center, transparent 0 1.5px, rgba(255,255,255,0.05) 1.5px 2.5px)',
                 }}
@@ -104,3 +222,4 @@ const MusicPlayer = () => {
 };
 
 export default MusicPlayer;
+

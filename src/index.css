@@ -324,3 +324,51 @@ body.ibm-plex-sans-theme * {
 @keyframes lofi-spin {
     to { transform: rotate(360deg); }
 }
+
+/* Volume slider — invisible vertical range input overlaid on the custom track */
+.lofi-volume-vertical {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    /* cover the track area inside the pill */
+    left: 50%;
+    top: 12px;
+    bottom: 12px;
+    width: 28px;
+    transform: translateX(-50%);
+    height: calc(100% - 24px);
+    background: transparent;
+    cursor: pointer;
+    writing-mode: vertical-lr;
+    direction: rtl;       /* top = max, bottom = min */
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+}
+.lofi-volume-vertical::-webkit-slider-runnable-track {
+    background: transparent;
+    border: none;
+}
+.lofi-volume-vertical::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.lofi-volume-vertical::-moz-range-track {
+    background: transparent;
+    border: none;
+}
+.lofi-volume-vertical::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
