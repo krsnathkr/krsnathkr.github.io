@@ -18,49 +18,34 @@ const MusicPlayer = () => {
     const [notes, setNotes] = useState([]);
     const hideTimeout = useRef(null);
 
-    // Auto-play on first user interaction.
-    // Browsers block autoplay until a "user activation" gesture occurs.
-    // NOTE: 'scroll' does NOT count as user activation in any major browser,
-    // so we rely on click / key / touch / pointer events instead.
+    // Try immediate autoplay; fall back to first-gesture if browser blocks it.
     useEffect(() => {
-        const startPlayback = () => {
+        const audio = audioRef.current;
+        if (!audio) return;
+        audio.volume = volume;
+
+        const attemptPlay = () => {
             if (autoplayTriggered.current) return;
             autoplayTriggered.current = true;
-
-            const audio = audioRef.current;
-            if (!audio) return;
-
-            audio.volume = volume;
-
-            // If the audio isn't ready yet, wait for it to load then play
-            const attemptPlay = () => {
-                audio.play().catch((err) => {
-                    // If play was blocked despite a gesture (e.g. very strict browser policy),
-                    // reset the flag so the next interaction can retry.
-                    console.warn('[MusicPlayer] autoplay blocked:', err.message);
-                    autoplayTriggered.current = false;
-                    events.forEach((e) => document.addEventListener(e, startPlayback, { once: false, passive: true }));
-                });
-            };
-
-            if (audio.readyState >= 3) {
-                // HAVE_FUTURE_DATA or HAVE_ENOUGH_DATA — ready to play
-                attemptPlay();
-            } else {
-                // Audio not loaded yet; wait for it
-                audio.addEventListener('canplaythrough', attemptPlay, { once: true });
-            }
-
-            events.forEach((e) => document.removeEventListener(e, startPlayback));
+            audio.play().catch(() => {
+                // Browser blocked silent autoplay — wait for a user gesture instead.
+                autoplayTriggered.current = false;
+                const events = ['click', 'mousedown', 'pointerdown', 'keydown', 'touchstart'];
+                const onGesture = () => {
+                    if (autoplayTriggered.current) return;
+                    autoplayTriggered.current = true;
+                    audio.play().catch(() => {});
+                    events.forEach((e) => document.removeEventListener(e, onGesture));
+                };
+                events.forEach((e) => document.addEventListener(e, onGesture, { passive: true }));
+            });
         };
 
-        // These events all count as user activation gestures in modern browsers
-        const events = ['click', 'mousedown', 'pointerdown', 'keydown', 'touchstart'];
-        events.forEach((e) => document.addEventListener(e, startPlayback, { once: false, passive: true }));
-
-        return () => {
-            events.forEach((e) => document.removeEventListener(e, startPlayback));
-        };
+        if (audio.readyState >= 3) {
+            attemptPlay();
+        } else {
+            audio.addEventListener('canplaythrough', attemptPlay, { once: true });
+        }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Keep audio volume in sync with slider
