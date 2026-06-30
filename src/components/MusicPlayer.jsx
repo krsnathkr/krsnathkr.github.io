@@ -11,57 +11,11 @@ const DEFAULT_VOLUME = 0.35;
 
 const MusicPlayer = () => {
     const audioRef = useRef(null);
-    const autoplayTriggered = useRef(false);
     const [playing, setPlaying] = useState(false);
     const [volume, setVolume] = useState(DEFAULT_VOLUME);
     const [showVolume, setShowVolume] = useState(false);
     const [notes, setNotes] = useState([]);
     const hideTimeout = useRef(null);
-
-    // Try immediate autoplay; fall back to first-gesture if browser blocks it.
-    useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
-        audio.volume = volume;
-
-        const fadeIn = () => {
-            audio.volume = 0;
-            const target = volume;
-            const duration = 4000; // ms
-            const step = 50;
-            const increment = target / (duration / step);
-            const timer = setInterval(() => {
-                const next = Math.min(audio.volume + increment, target);
-                audio.volume = next;
-                if (next >= target) clearInterval(timer);
-            }, step);
-        };
-
-        const attemptPlay = () => {
-            if (autoplayTriggered.current) return;
-            autoplayTriggered.current = true;
-            audio.volume = 0;
-            audio.play().then(fadeIn).catch(() => {
-                // Browser blocked silent autoplay — wait for a user gesture instead.
-                autoplayTriggered.current = false;
-                const events = ['click', 'mousedown', 'pointerdown', 'keydown', 'touchstart'];
-                const onGesture = () => {
-                    if (autoplayTriggered.current) return;
-                    autoplayTriggered.current = true;
-                    audio.volume = 0;
-                    audio.play().then(fadeIn).catch(() => {});
-                    events.forEach((e) => document.removeEventListener(e, onGesture));
-                };
-                events.forEach((e) => document.addEventListener(e, onGesture, { passive: true }));
-            });
-        };
-
-        if (audio.readyState >= 3) {
-            attemptPlay();
-        } else {
-            audio.addEventListener('canplaythrough', attemptPlay, { once: true });
-        }
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Keep audio volume in sync with slider
     useEffect(() => {
