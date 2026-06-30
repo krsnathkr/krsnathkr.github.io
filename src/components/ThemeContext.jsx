@@ -35,7 +35,9 @@ export const ThemeProvider = ({ children }) => {
 
         // Use View Transition API if available
         if (document.startViewTransition) {
-            const transition = document.startViewTransition(() => {
+            document.startViewTransition(() => {
+                setIsDark(prev => !prev);
+            }).catch(() => {
                 setIsDark(prev => !prev);
             });
         } else {
