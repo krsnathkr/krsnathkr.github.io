@@ -31,7 +31,7 @@ const MusicPlayer = () => {
             setNotes((n) => [
                 ...n,
                 {
-                    id: crypto.randomUUID(),
+                    id: crypto.randomUUID?.() ?? Math.random().toString(36).slice(2),
                     x: (Math.random() - 0.5) * 36,
                     rot: (Math.random() - 0.5) * 40,
                     Icon: Math.random() > 0.5 ? MusicNote : MusicNotes,
