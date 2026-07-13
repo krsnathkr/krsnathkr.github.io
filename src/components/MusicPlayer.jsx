@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MusicNote, MusicNotes } from '@phosphor-icons/react';
+import useScrollFade from '../hooks/useScrollFade';
 
 const MotionSpan = motion.span;
 const MotionDiv = motion.div;
@@ -67,10 +68,13 @@ const MusicPlayer = () => {
 
     // Volume percentage for the fill indicator
     const volumePct = Math.round(volume * 100);
+    const scrollOpacity = useScrollFade();
+    const opacity = showVolume ? 1 : scrollOpacity;
 
     return (
         <div
-            className="fixed bottom-6 left-6 z-50"
+            className="fixed bottom-3 left-6 sm:bottom-6 z-50"
+            style={{ opacity, transition: 'opacity 0.3s ease' }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
