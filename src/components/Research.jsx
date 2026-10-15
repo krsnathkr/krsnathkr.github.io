@@ -52,7 +52,7 @@ const Research = () => {
                                 {item.contributors.map((c, i) => (
                                     <p key={i} className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                                         {c.role}: {c.link ? (
-                                            <a href={c.link} target="_blank" rel="noopener noreferrer" className="relative z-20 underline-wavy-animated">
+                                            <a href={c.link} target="_blank" rel="noopener noreferrer" className="relative z-20 inline-block leading-snug underline-wavy-animated">
                                                 {c.name}
                                             </a>
                                         ) : c.name}

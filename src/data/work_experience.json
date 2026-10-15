@@ -1,8 +1,8 @@
 [
     {
-        "role": "Data Engineer Intern",
-        "company": "Pubgen.ai",
-        "period": "May 2026 - Present",
+        "role": "Fall Co-op Data Engineer Intern",
+        "company": "PubGen.ai",
+        "period": "Aug 2026 - Present",
         "summary": "Building data infrastructure and pipelines to support AI-driven publishing workflows.",
         "points": [
             "Designing and maintaining data pipelines for AI publishing workflows."
@@ -17,6 +17,16 @@
         "points": [
             "Developing reusable web components and custom page templates.",
             "Maintaining official university website semo.edu."
+        ],
+        "featured": true
+    },
+    {
+        "role": "Summer Intern Data Engineer",
+        "company": "PubGen.ai",
+        "period": "May 2026 - Aug 2026",
+        "summary": "Built data infrastructure and pipelines to support AI-driven publishing workflows.",
+        "points": [
+            "Designed and maintained data pipelines for AI publishing workflows."
         ],
         "featured": true
     },

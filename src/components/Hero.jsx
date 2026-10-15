@@ -24,7 +24,7 @@ const Hero = () => {
             </p>
 
             <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-4 max-w-xl">
-                I currently work as a Data Engineer Intern at Pubgen.ai, a web developer for my university, and a deep learning researcher with my professor — all at once.
+                I currently work as a Fall Co-op Data Engineer Intern at PubGen.ai, a web developer for my university, and a deep learning researcher with my professor — all at once.
             </p>
             <p className="text-gray-600 dark:text-gray-400 font-light leading-relaxed mb-8 max-w-xl">
                 I am working toward becoming an ML engineer or data scientist/engineer, with the goal of building intelligent solutions that are not just theoretically strong, but practical and ready for real-world use.
