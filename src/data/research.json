@@ -18,7 +18,7 @@
         "label": "Comparative Study",
         "title": "Sentiment Analysis of Yelp Review Dataset",
         "desc": "Investigated effectiveness of SVM, Random Forest vs CNN, BILSTM, and RoBERTa.",
-        "link": "https://github.com/Abusheha80/Student-Research-Conference-Natural-Language-Processing",
+        "link": "https://aclanthology.org/2026.acl-srw.38/",
         "contributors": [
             {
                 "role": "Advisors",
