@@ -1,13 +1,14 @@
 import React from 'react';
 import { ArrowLeft } from '@phosphor-icons/react';
 import workExperience from '../data/work_experience.json';
+import { contentAttributes } from '../analytics/content.js';
 
 const ExperienceArchive = ({ onBack }) => {
     const featured = workExperience.filter(e => e.featured);
     const past = workExperience.filter(e => !e.featured);
 
     const Entry = ({ entry }) => (
-        <div className="py-8 border-b border-gray-100 dark:border-gray-800 last:border-0">
+        <div {...contentAttributes('experience', { id: `${entry.company}:${entry.role}`, title: entry.role, category: entry.company }, 'archive')} className="py-8 border-b border-gray-100 dark:border-gray-800 last:border-0">
             <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">{entry.role}</h3>
                 <span className="text-sm text-gray-400 dark:text-gray-500 mt-0.5 md:mt-0 shrink-0">
@@ -31,6 +32,8 @@ const ExperienceArchive = ({ onBack }) => {
         <div className="animate-in fade-in duration-500">
             <button
                 onClick={onBack}
+                data-analytics-event="archive_closed"
+                data-analytics-target="experience_archive"
                 className="mb-12 group flex items-center gap-2 text-sm font-medium text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors"
             >
                 <ArrowLeft className="transform group-hover:-translate-x-1 transition-transform" size={16} />

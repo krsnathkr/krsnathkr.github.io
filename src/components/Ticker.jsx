@@ -10,6 +10,9 @@ const TickerItem = ({ item, 'aria-hidden': ariaHidden }) => (
         <span className="w-1.5 h-1.5 rounded-full animate-pulse mx-4 flex-shrink-0" style={{ backgroundColor: '#2776EA' }} />
         {item.url ? (
             <a
+                data-analytics-event="highlight_clicked"
+                data-analytics-name={item.text}
+                data-analytics-placement="ticker"
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"

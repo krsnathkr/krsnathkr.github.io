@@ -15,6 +15,8 @@ const ThemeToggle = () => {
         <button
             onClick={handleClick}
             data-haptic="success"
+            data-analytics-event="theme_toggled"
+            data-analytics-target={isDark ? 'light' : 'dark'}
             className="fixed bottom-3 right-6 sm:bottom-6 z-50 p-2.5 rounded-full
                        bg-gray-100 dark:bg-gray-800
                        text-gray-600 dark:text-gray-300

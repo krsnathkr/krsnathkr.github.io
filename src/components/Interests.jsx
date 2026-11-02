@@ -1,15 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import SectionTitle from './SectionTitle';
+import { trackEvent } from '../analytics/posthog.js';
 
 const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobileAlignment = "center" }) => {
     const [isOpen, setIsOpen] = useState(false);
     const itemRef = useRef(null);
     const touchTimeoutRef = useRef(null);
+    const openRef = useRef(false);
+    const setExpanded = useCallback((next, method) => {
+        if (openRef.current === next) return;
+        openRef.current = next;
+        setIsOpen(next);
+        if (next) trackEvent('interest_expanded', { interest: label, method });
+    }, [label]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (itemRef.current && !itemRef.current.contains(event.target)) {
-                setIsOpen(false);
+                setExpanded(false);
             }
         };
 
@@ -20,13 +28,13 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobi
             document.removeEventListener('mousedown', handleClickOutside);
             if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
         };
-    }, []);
+    }, [setExpanded]);
 
     const handleInteraction = () => {
         // Prevent default only if we are taking over the touch action entirely
         // but for iOS Safari we generally want the tap to go through so focus fires
         if (onClickAction) onClickAction();
-        setIsOpen((prev) => !prev);
+        setExpanded(!openRef.current, 'click');
     };
 
     const alignmentClasses = {
@@ -40,15 +48,20 @@ const HoverItem = ({ label, children, tooltipClassName = "", onClickAction, mobi
             ref={itemRef}
             type="button"
             aria-expanded={isOpen}
+            onFocus={(event) => {
+                // Keyboard focus reveals the tooltip without an extra click.
+                if (event.currentTarget.matches(':focus-visible')) setExpanded(true, 'focus');
+            }}
+            onBlur={() => setExpanded(false)}
             className={`relative inline-block ${onClickAction ? 'cursor-pointer' : 'cursor-help'} underline-wavy-animated wavy-clip-content transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400`}
             onMouseEnter={() => {
                 // Ignore mouse enter if we recently processed a touch event (fixes iOS double-firing)
                 if (touchTimeoutRef.current) return;
-                setIsOpen(true);
+                setExpanded(true, 'hover');
             }}
             onMouseLeave={() => {
                 if (touchTimeoutRef.current) return;
-                setIsOpen(false);
+                setExpanded(false);
             }}
             onTouchStart={() => {
                 // Set a flag that a touch started, clear it after a delay
@@ -103,6 +116,9 @@ const Interests = () => {
                     <span>·</span>
                     <a
                         href="https://www.nasa.gov/images/"
+                        data-analytics-event="interest_link_clicked"
+                        data-analytics-name="Space & Universe"
+                        data-analytics-placement="interests"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block cursor-pointer underline-wavy-animated wavy-clip-content transition-all duration-200 rounded-md px-1.5 py-0.5 -mx-1.5 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -130,7 +146,10 @@ const Interests = () => {
                     <HoverItem
                         label="IBM Plex Sans"
                         tooltipClassName="px-2 py-1 text-white dark:text-gray-900 text-xs whitespace-nowrap"
-                        onClickAction={() => document.body.classList.toggle('ibm-plex-sans-theme')}
+                        onClickAction={() => {
+                            const enabled = document.body.classList.toggle('ibm-plex-sans-theme');
+                            trackEvent('font_changed', { font: enabled ? 'ibm_plex_sans' : 'mozilla_text' });
+                        }}
                     >
                         click me
                     </HoverItem>

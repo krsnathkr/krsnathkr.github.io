@@ -10,6 +10,9 @@ const Contact = () => {
                 Connect with me on{' '}
                 <a
                     href="https://www.linkedin.com/in/krsnathkr/"
+                    data-analytics-event="contact_clicked"
+                    data-analytics-channel="linkedin"
+                    data-analytics-placement="contact"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block underline-wavy-animated wavy-clip-content py-0.5 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
@@ -19,6 +22,9 @@ const Contact = () => {
                 {' '}or shoot an{' '}
                 <a
                     href="mailto:krsnathkr@gmail.com"
+                    data-analytics-event="contact_clicked"
+                    data-analytics-channel="email"
+                    data-analytics-placement="contact"
                     className="inline-block underline-wavy-animated wavy-clip-content py-0.5 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
                 >
                     email
@@ -30,6 +36,8 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="contact-view-cv"
+                data-analytics-event="resume_clicked"
+                data-analytics-placement="contact"
                 className="inline-flex items-center gap-1.5 mt-3 text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed underline-wavy-animated wavy-clip-content py-0.5 hover:text-gray-900 dark:hover:text-gray-100 transition-all duration-200"
             >
                 <Eye size={14} />

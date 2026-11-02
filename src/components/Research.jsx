@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import researchData from '../data/research.json';
+import { contentAttributes } from '../analytics/content.js';
 import aclLightSticker from '../assets/acl-light-sticker.png';
 import aclDarkSticker from '../assets/acl-dark-sticker.png';
 import { useTheme } from './ThemeContext';
@@ -19,6 +20,7 @@ const Research = () => {
                 {[...researchData].sort((a, b) => b.id - a.id).map(item => (
                     <div
                         key={item.id}
+                        {...contentAttributes('research', item, 'research')}
                         className={`${item.link ? 'group ' : ''}relative ${item.id === ACL_STICKER_RESEARCH_ID ? 'acl-sticker-target pr-0 sm:pr-36' : ''}`}
                     >
                         {item.id === ACL_STICKER_RESEARCH_ID && (
@@ -52,7 +54,7 @@ const Research = () => {
                                 {item.contributors.map((c, i) => (
                                     <p key={i} className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                                         {c.role}: {c.link ? (
-                                            <a href={c.link} target="_blank" rel="noopener noreferrer" className="relative z-20 inline-block leading-snug underline-wavy-animated">
+                                            <a data-analytics-event="research_contributor_clicked" data-analytics-name={c.name} data-analytics-placement="research" href={c.link} target="_blank" rel="noopener noreferrer" className="relative z-20 inline-block leading-snug underline-wavy-animated">
                                                 {c.name}
                                             </a>
                                         ) : c.name}

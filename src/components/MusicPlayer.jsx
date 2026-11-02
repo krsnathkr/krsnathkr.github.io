@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MusicNote, MusicNotes } from '@phosphor-icons/react';
 import useScrollFade from '../hooks/useScrollFade';
+import { trackEvent } from '../analytics/posthog.js';
 
 const MotionSpan = motion.span;
 const MotionDiv = motion.div;
@@ -17,6 +18,8 @@ const MusicPlayer = () => {
     const [showVolume, setShowVolume] = useState(false);
     const [notes, setNotes] = useState([]);
     const hideTimeout = useRef(null);
+    const playStartedAt = useRef(null);
+    const reportedVolume = useRef(DEFAULT_VOLUME);
 
     // Keep audio volume in sync with slider
     useEffect(() => {
@@ -83,8 +86,20 @@ const MusicPlayer = () => {
                 src={TRACK}
                 loop
                 preload="auto"
-                onPlay={() => setPlaying(true)}
-                onPause={() => setPlaying(false)}
+                onPlay={() => {
+                    setPlaying(true);
+                    playStartedAt.current = performance.now();
+                    trackEvent('music_played', { track: 'lofi', volume });
+                }}
+                onPause={() => {
+                    setPlaying(false);
+                    const startedAt = playStartedAt.current;
+                    playStartedAt.current = null;
+                    trackEvent('music_paused', {
+                        track: 'lofi',
+                        played_ms: startedAt === null ? 0 : Math.round(performance.now() - startedAt),
+                    });
+                }}
             />
 
             {/* Volume slider — vertical, rises from the disc */}
@@ -141,6 +156,21 @@ const MusicPlayer = () => {
                                 step="0.01"
                                 value={volume}
                                 onChange={handleVolumeChange}
+                                onBlur={() => {
+                                    if (reportedVolume.current === volume) return;
+                                    reportedVolume.current = volume;
+                                    trackEvent('music_volume_changed', { volume });
+                                }}
+                                onPointerUp={() => {
+                                    if (reportedVolume.current === volume) return;
+                                    reportedVolume.current = volume;
+                                    trackEvent('music_volume_changed', { volume });
+                                }}
+                                onKeyUp={(event) => {
+                                    if (!event.key.startsWith('Arrow') || reportedVolume.current === volume) return;
+                                    reportedVolume.current = volume;
+                                    trackEvent('music_volume_changed', { volume });
+                                }}
                                 aria-label="Volume"
                                 className="lofi-volume-vertical"
                             />

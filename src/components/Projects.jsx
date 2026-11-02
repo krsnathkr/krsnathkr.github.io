@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, ArrowUpRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import projectsData from '../data/projects.json';
+import { contentAttributes } from '../analytics/content.js';
 
 const featuredProjects = projectsData.filter(p => p.featured);
 
@@ -12,7 +13,7 @@ const Projects = ({ onArchiveClick }) => {
 
             <div className="space-y-10">
                 {featuredProjects.map(project => (
-                    <div key={project.id} className={`relative ${project.link ? 'group' : ''}`}>
+                    <div key={project.id} {...contentAttributes('project', project, 'featured')} className={`relative ${project.link ? 'group' : ''}`}>
                         {project.link && (
                             <a href={project.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10" aria-label={project.title} />
                         )}
@@ -43,6 +44,9 @@ const Projects = ({ onArchiveClick }) => {
             <div className="mt-10">
                 <button
                     onClick={onArchiveClick}
+                    data-analytics-event="archive_opened"
+                    data-analytics-target="projects_archive"
+                    data-analytics-placement="projects"
                     className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200"
                 >
                     All Projects <ArrowRight size={12} className="ml-1.5" />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, ArrowSquareOut } from '@phosphor-icons/react';
 import projectsData from '../data/projects.json';
+import { contentAttributes } from '../analytics/content.js';
+import { trackEvent } from '../analytics/posthog.js';
 
 const Archive = ({ onBack }) => {
     const [filter, setFilter] = useState('All');
@@ -8,6 +10,9 @@ const Archive = ({ onBack }) => {
     const projects = [...projectsData]
         .sort((a, b) => b.id - a.id)
         .map(p => ({
+            id: p.id,
+            title: p.title,
+            tags: p.tags,
             name: p.title,
             category: p.cat,
             builtWith: p.tags.join(', '),
@@ -24,6 +29,8 @@ const Archive = ({ onBack }) => {
         <div id="archive-view" className="animate-in fade-in duration-500">
             <button
                 onClick={onBack}
+                data-analytics-event="archive_closed"
+                data-analytics-target="projects_archive"
                 className="mb-12 group flex items-center gap-2 text-sm font-medium text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors"
             >
                 <ArrowLeft className="transform group-hover:-translate-x-1 transition-transform" size={16} />
@@ -41,7 +48,15 @@ const Archive = ({ onBack }) => {
                 {categories.map((category) => (
                     <button
                         key={category}
-                        onClick={() => setFilter(category)}
+                        onClick={() => {
+                            if (category === filter) return;
+                            trackEvent('project_filter_changed', {
+                                category,
+                                previous_category: filter,
+                                result_count: category === 'All' ? projects.length : projects.filter(project => project.category === category).length,
+                            });
+                            setFilter(category);
+                        }}
                         className={`text-sm whitespace-nowrap transition-colors ${filter === category
                             ? 'text-black dark:text-white font-semibold'
                             : 'text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white'
@@ -63,14 +78,14 @@ const Archive = ({ onBack }) => {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100 dark:divide-gray-800 text-gray-600 dark:text-gray-400">
-                        {filteredProjects.map((project, index) => (
-                            <tr key={index} className="group hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+                        {filteredProjects.map((project) => (
+                            <tr key={project.id} {...contentAttributes('project', project, 'archive')} className="group hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
                                 <td className="py-4 pr-4 font-medium text-black dark:text-white">{project.name}</td>
                                 <td className="py-4 px-4 hidden md:table-cell">{project.category}</td>
                                 <td className="py-4 px-4 hidden md:table-cell font-mono text-xs text-gray-500 dark:text-gray-400">{project.builtWith}</td>
                                 <td className="py-4 pl-4 text-right">
                                     {project.link && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer"
+                                        <a aria-label={`Open ${project.name}`} href={project.link} target="_blank" rel="noopener noreferrer"
                                             className="text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white hover-underline-wavy-animated inline-block">
                                             <ArrowSquareOut size={14} />
                                         </a>

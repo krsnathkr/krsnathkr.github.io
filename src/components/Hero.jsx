@@ -32,22 +32,23 @@ const Hero = () => {
 
             {/* Social Links */}
             <div className="flex gap-5 text-gray-400 dark:text-gray-500">
-                <a href="https://github.com/krsnathkr/" target="_blank" rel="noopener noreferrer"
+                <a data-analytics-event="social_clicked" data-analytics-channel="github" data-analytics-placement="hero" aria-label="GitHub" href="https://github.com/krsnathkr/" target="_blank" rel="noopener noreferrer"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
                     <GithubLogo size={24} />
                 </a>
-                <a href="https://www.linkedin.com/in/krsnathkr/" target="_blank" rel="noopener noreferrer"
+                <a data-analytics-event="social_clicked" data-analytics-channel="linkedin" data-analytics-placement="hero" aria-label="LinkedIn" href="https://www.linkedin.com/in/krsnathkr/" target="_blank" rel="noopener noreferrer"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
                     <LinkedinLogo size={24} />
                 </a>
                 <a href="https://scholar.google.com/citations?user=Mm_G5sQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer"
+                    data-analytics-event="social_clicked" data-analytics-channel="google_scholar" data-analytics-placement="hero"
                     aria-label="Google Scholar" title="Google Scholar"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
                     </svg>
                 </a>
-                <a href="mailto:krsnathkr@gmail.com"
+                <a data-analytics-event="contact_clicked" data-analytics-channel="email" data-analytics-placement="hero" aria-label="Email" href="mailto:krsnathkr@gmail.com"
                     className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200">
                     <Envelope size={24} />
                 </a>
@@ -59,6 +60,8 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="view-cv-btn"
+                data-analytics-event="resume_clicked"
+                data-analytics-placement="hero"
                 className="resume-btn group"
             >
                 <span className="resume-btn-shimmer" />

@@ -67,6 +67,10 @@ const SideNav = ({ visible = true }) => {
                     <li key={id}>
                         <button
                             onClick={() => scrollTo(id)}
+                            data-analytics-event="navigation_clicked"
+                            data-analytics-target={id}
+                            data-analytics-name={label}
+                            data-analytics-placement="side_navigation"
                             className={`side-nav-link${activeSection === id ? ' active' : ''}`}
                             aria-current={activeSection === id ? 'true' : undefined}
                         >

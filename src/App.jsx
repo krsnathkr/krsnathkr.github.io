@@ -20,6 +20,7 @@ import Ticker from './components/Ticker';
 import SideNav from './components/SideNav';
 import MusicPlayer from './components/MusicPlayer';
 import { shouldUseHapticAudioFallback } from './utils/haptics';
+import usePortfolioAnalytics from './hooks/usePortfolioAnalytics';
 
 const HAPTIC_TARGET_SELECTOR = [
   'a',
@@ -43,6 +44,7 @@ const isDisabledInteraction = (element) => {
 function AppContent() {
   const [showArchive, setShowArchive] = useState(false);
   const [showExperienceArchive, setShowExperienceArchive] = useState(false);
+  usePortfolioAnalytics(showArchive ? 'projects_archive' : showExperienceArchive ? 'experience_archive' : 'home');
   const { isDark } = useTheme();
   const { trigger } = useWebHaptics({
     debug: shouldUseHapticAudioFallback(),
@@ -79,7 +81,7 @@ function AppContent() {
         <div className="max-w-2xl mx-auto px-6 py-20 md:py-28">
 
           {/* Main Home View */}
-          <div id="home-view" className={`${showArchive || showExperienceArchive ? 'hidden' : 'block'}`}>
+          <div id="home-view" data-analytics-view="home" className={`${showArchive || showExperienceArchive ? 'hidden' : 'block'}`}>
             <Hero />
 
             <div className="content-scaled">
@@ -115,7 +117,7 @@ function AppContent() {
 
           {/* Archive View */}
           {showArchive && (
-            <div id="archive-view">
+            <div id="archive-view" data-analytics-view="projects_archive">
               <Archive onBack={() => {
                 setShowArchive(false);
                 window.scrollTo(0, 0);
@@ -125,7 +127,7 @@ function AppContent() {
 
           {/* Experience Archive View */}
           {showExperienceArchive && (
-            <div id="experience-archive-view">
+            <div id="experience-archive-view" data-analytics-view="experience_archive">
               <ExperienceArchive onBack={() => {
                 setShowExperienceArchive(false);
                 window.scrollTo(0, 0);

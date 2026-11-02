@@ -35,11 +35,12 @@ export const ThemeProvider = ({ children }) => {
 
         // Use View Transition API if available
         if (document.startViewTransition) {
-            document.startViewTransition(() => {
-                setIsDark(prev => !prev);
-            }).catch(() => {
+            const transition = document.startViewTransition(() => {
                 setIsDark(prev => !prev);
             });
+            // The API returns a ViewTransition, not a Promise. A cancelled
+            // animation must not throw or toggle the theme a second time.
+            transition.finished.catch(() => {});
         } else {
             // Fallback: instant toggle
             setIsDark(prev => !prev);

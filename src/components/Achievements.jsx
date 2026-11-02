@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionTitle from './SectionTitle';
 import achievementsData from '../data/achievements.json';
+import { contentAttributes } from '../analytics/content.js';
 
 const Achievements = () => {
     return (
@@ -9,7 +10,7 @@ const Achievements = () => {
 
             <div className="space-y-8">
                 {achievementsData.map(item => (
-                    <div key={item.id} className="group">
+                    <div key={item.id} {...contentAttributes('achievement', item, 'achievements')} className="group">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
                             <h3 className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:text-black dark:group-hover:text-white transition-colors">
                                 {item.title}

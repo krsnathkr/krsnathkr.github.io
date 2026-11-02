@@ -9,6 +9,8 @@ lerna-debug.log*
 
 
 .playwright-report/
+playwright-report/
+test-results/
 .playwright-mcp/
 .remember/
 

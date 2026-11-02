@@ -1,6 +1,8 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import SectionTitle from './SectionTitle';
+import { contentAttributes } from '../analytics/content.js';
+import { trackEvent } from '../analytics/posthog.js';
 
 import img1 from '../assets/photos/IMG_2495.jpg';
 import img2 from '../assets/photos/IMG_2670.jpg';
@@ -19,6 +21,7 @@ const MotionImg = motion.img;
 const PhotoGallery = () => {
     const containerRef = useRef(null);
     const [selectedPhoto, setSelectedPhoto] = useState(null);
+    const activePhoto = useRef(null);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -29,7 +32,23 @@ const PhotoGallery = () => {
     const x1 = useTransform(scrollYProgress, [0, 1], [-20, 20]);
     const x2 = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
-    const closeLightbox = useCallback(() => setSelectedPhoto(null), []);
+    const openLightbox = (src, photoId, openedAt) => {
+        activePhoto.current = { id: photoId, openedAt };
+        setSelectedPhoto(src);
+        trackEvent('gallery_photo_opened', { photo_id: photoId });
+    };
+
+    const closeLightbox = (event) => {
+        const photo = activePhoto.current;
+        if (!photo) return;
+        // The image and backdrop both receive a bubbled click; count one close.
+        activePhoto.current = null;
+        setSelectedPhoto(null);
+        trackEvent('gallery_photo_closed', {
+            photo_id: photo.id,
+            duration_ms: Math.max(0, Math.round(event.timeStamp - photo.openedAt)),
+        });
+    };
 
     return (
         <>
@@ -77,9 +96,10 @@ const PhotoGallery = () => {
                         {row1.map((src, i) => (
                             <div
                                 key={i}
+                                {...contentAttributes('photo', { id: `photo-${i + 1}`, title: `Gallery photo ${i + 1}` }, 'gallery')}
                                 className="flex-shrink-0 h-40 md:h-52 cursor-pointer"
                                 data-haptic="success"
-                                onClick={() => setSelectedPhoto(src)}
+                                onClick={(event) => openLightbox(src, `photo-${i + 1}`, event.timeStamp)}
                             >
                                 <img
                                     src={src}
@@ -100,9 +120,10 @@ const PhotoGallery = () => {
                         {row2.map((src, i) => (
                             <div
                                 key={i}
+                                {...contentAttributes('photo', { id: `photo-${i + 5}`, title: `Gallery photo ${i + 5}` }, 'gallery')}
                                 className="flex-shrink-0 h-40 md:h-52 cursor-pointer"
                                 data-haptic="success"
-                                onClick={() => setSelectedPhoto(src)}
+                                onClick={(event) => openLightbox(src, `photo-${i + 5}`, event.timeStamp)}
                             >
                                 <img
                                     src={src}
@@ -121,6 +142,9 @@ const PhotoGallery = () => {
             <AnimatePresence>
                 {selectedPhoto && (
                     <MotionDiv
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Gallery photo"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}

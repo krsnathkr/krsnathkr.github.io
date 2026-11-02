@@ -2,9 +2,10 @@ import React from 'react';
 import { ArrowRight } from '@phosphor-icons/react';
 import SectionTitle from './SectionTitle';
 import workExperience from '../data/work_experience.json';
+import { contentAttributes } from '../analytics/content.js';
 
-const ExperienceItem = ({ title, date, org, description }) => (
-    <div>
+const ExperienceItem = ({ title, date, org, description, entry }) => (
+    <div {...contentAttributes('experience', { id: `${entry.company}:${entry.role}`, title: entry.role, category: entry.company }, 'featured')}>
         <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
             <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
             <span className="text-sm text-gray-400 dark:text-gray-500 mt-0.5 md:mt-0">{date}</span>
@@ -25,6 +26,7 @@ const Experience = ({ onFullResumeClick }) => {
                 {featured.map((e, i) => (
                     <ExperienceItem
                         key={i}
+                        entry={e}
                         title={e.role}
                         date={e.period.replace(' - ', ' – ')}
                         org={e.company}
@@ -36,6 +38,9 @@ const Experience = ({ onFullResumeClick }) => {
             <div className="mt-10">
                 <button
                     onClick={onFullResumeClick}
+                    data-analytics-event="archive_opened"
+                    data-analytics-target="experience_archive"
+                    data-analytics-placement="experience"
                     className="inline-flex items-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200"
                 >
                     All Experience <ArrowRight size={12} className="ml-1.5" />
